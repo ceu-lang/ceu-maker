@@ -1,29 +1,29 @@
-- cd pico-ceu.git/windows/
-- right click pico-ceu-windows/
+- cd git/ceu-maker/
+- right click ceu-maker/
     - Add to archive...
         - [X] create SFX archive
         - Advanced
             - SFX options...
                 - Setup
                     - Run after extraction
-                        - pico-ceu-windows\start.bat
+                        - ceu-maker\start.bat
                 - Advanced
                     - Add shortcut...
                         - Source file name
-                            - pico-ceu-windows\run\make.bat
+                            - ceu-maker\run\make-pico.bat
                         - Shortcut name
                             - pico-Céu
                         - Shortcut icon
-                            - pico-ceu-windows\star_16.ico
+                            - ceu-maker\star_16.ico
                     - Add shortcut...
                         - Source file name
-                            - pico-ceu-windows\run\make-arduino.bat
+                            - ceu-maker\run\make-arduino.bat
                         - Shortcut name
-                            - pico-Céu-Arduino
+                            - Céu-Arduino
                         - Shortcut icon
-                            - pico-ceu-windows\star_16.ico
+                            - ceu-maker\star_16.ico
                 - Text and icon
                     - Load SFX icon from the file
                         - Browse...
-                            - pico-ceu-windows/star_16.ico
-- move pico-ceu-windows.exe to releases/pico-ceu-windows-vX.XX-XXX
+                            - ceu-maker/star_16.ico
+- move ceu-maker.exe to releases/ceu-maker-vX.XX-XXX
