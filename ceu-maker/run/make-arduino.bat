@@ -21,7 +21,7 @@ if ERRORLEVEL 1 goto ERROR
 ..\arduino-1.8.3\arduino.exe --board arduino:%ARD_ARCH%:%ARD_BOARD%%ARD_CPU% --port %ARD_PORT% --upload ceu\env\arduino\env\env.ino
 if ERRORLEVEL 1 goto ERROR
 
-rem exit
+exit
 
 :ERROR
 pause
