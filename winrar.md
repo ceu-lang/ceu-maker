@@ -9,11 +9,17 @@
                         - pico-ceu-windows\start.bat
                 - Advanced
                     - Add shortcut...
-                        - [x] Desktop
                         - Source file name
                             - pico-ceu-windows\run\make.bat
                         - Shortcut name
                             - pico-Céu
+                        - Shortcut icon
+                            - pico-ceu-windows\star_16.ico
+                    - Add shortcut...
+                        - Source file name
+                            - pico-ceu-windows\run\make-arduino.bat
+                        - Shortcut name
+                            - pico-Céu-Arduino
                         - Shortcut icon
                             - pico-ceu-windows\star_16.ico
                 - Text and icon
