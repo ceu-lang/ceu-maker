@@ -16,8 +16,10 @@ ceu:
 
 arduino:
 	#cp $(CEU_ARDUINO_DIR)/docs/manual/v0.30/ceu-arduino-v0.30.pdf ceu-maker/docs/
-	cp -Rf $(CEU_ARDUINO_DIR)/samples/            ceu-maker/samples/ceu-arduino
+	rm -Rf ceu-maker/samples/ceu-arduino/
+	cp -Rf $(CEU_ARDUINO_DIR)/samples/            ceu-maker/samples/ceu-arduino/
 	cp -Rf $(CEU_ARDUINO_DIR)/include/arduino/    ceu-maker/run/ceu/include/
+	rm -Rf ceu-maker/run/ceu/env/arduino/
 	cp -Rf $(CEU_ARDUINO_DIR)/env/                ceu-maker/run/ceu/env/arduino/
 
 sdl:
@@ -25,7 +27,8 @@ sdl:
 
 pico:
 	cp $(CEU_PICO_DIR)/docs/manual/v0.30/pico-ceu-v0.30.pdf ceu-maker/docs/
-	cp -Rf $(CEU_PICO_DIR)/samples/               ceu-maker/samples/pico-ceu
+	rm -Rf ceu-maker/samples/pico-ceu/
+	cp -Rf $(CEU_PICO_DIR)/samples/               ceu-maker/samples/pico-ceu/
 	cp -Rf $(CEU_PICO_DIR)/include/pico/          ceu-maker/run/ceu/include/
 	cp $(CEU_PICO_DIR)/pico.ceu                   ceu-maker/run/ceu/
 
