@@ -10,6 +10,13 @@
                 - Advanced
                     - Add shortcut...
                         - Source file name
+                            - ceu-maker\bin\
+                        - Shortcut name
+                            - Céu-Maker
+                        - Shortcut icon
+                            - ceu-maker\cib_192.ico
+                    - Add shortcut...
+                        - Source file name
                             - ceu-maker\run\make-pico.bat
                         - Shortcut name
                             - pico-Céu
@@ -25,5 +32,5 @@
                 - Text and icon
                     - Load SFX icon from the file
                         - Browse...
-                            - ceu-maker/star_16.ico
+                            - icos/cib_192.ico
 - move ceu-maker.exe to releases/ceu-maker-vX.XX-XXX
