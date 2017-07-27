@@ -15,7 +15,10 @@ ceu:
 	cp /usr/local/bin/ceu                         ceu-maker/run/ceu.lua
 
 arduino:
-	ls
+	#cp $(CEU_ARDUINO_DIR)/docs/manual/v0.30/ceu-arduino-v0.30.pdf ceu-maker/docs/
+	cp -Rf $(CEU_ARDUINO_DIR)/samples/            ceu-maker/samples/ceu-arduino
+	cp -Rf $(CEU_ARDUINO_DIR)/include/arduino/    ceu-maker/run/ceu/include/
+	cp -Rf $(CEU_ARDUINO_DIR)/env/                ceu-maker/run/ceu/env/arduino/
 
 sdl:
 	cp -Rf $(CEU_SDL_DIR)/include/sdl/            ceu-maker/run/ceu/include/
@@ -24,6 +27,6 @@ pico:
 	cp $(CEU_PICO_DIR)/docs/manual/v0.30/pico-ceu-v0.30.pdf ceu-maker/docs/
 	cp -Rf $(CEU_PICO_DIR)/samples/               ceu-maker/samples/pico-ceu
 	cp -Rf $(CEU_PICO_DIR)/include/pico/          ceu-maker/run/ceu/include/
-	cp $(CEU_PICO_DIR)/pico.ceu                   ceu-maker/run/ceu/include/pico/
+	cp $(CEU_PICO_DIR)/pico.ceu                   ceu-maker/run/ceu/
 
 .PHONY: ceu arduino sdl pico
