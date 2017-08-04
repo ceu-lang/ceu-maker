@@ -1,0 +1,39 @@
+<NotepadPlus>
+    <UserLang name="Céu" ext="ceu">
+        <Settings>
+            <Global caseIgnored="no" />
+            <TreatAsSymbol comment="no" commentLine="no" />
+            <Prefix words1="no" words2="no" words3="no" words4="no" />
+        </Settings>
+        <KeywordLists>
+            <Keywords name="Delimiters">000000</Keywords>
+            <Keywords name="Folder+">do</Keywords>
+            <Keywords name="Folder-">end</Keywords>
+            <Keywords name="Operators">! % ( ) : ; ? ^ { } ~ + &lt; = &gt;</Keywords>
+            <Keywords name="Comment">1/* 2*/ 0//</Keywords>
+	    <Keywords name="Words1">null true false _ yes no on off
+		    		    not or and sizeof as is
+            			    const nohold recursive plain pure hold pre pos tight dynamic static</Keywords>
+            <Keywords name="Words2">bool yes/no on/off byte r32 r64 real integer int s16 s32 s64 s8 ssize u16 u32 u64 u8 uint usize none NEVER text
+            			    int float double long int8_t int16_t int32_t int64_t uint8_t uint16_t uint32_t uint64_t void bool</Keywords>
+			    <Keywords name="Words3">if else switch case default break goto return for while do continue typedef sizeof event input output var pool async async/isr async/thread await break continue deterministic do else else/if emit end every finalize FOREVER outer if loop nothing lock par par/and par/or pause pause/if then until val with kill spawn thread lua resume traverse escape call isr atomic request in watching new #warning typedef struct union enum const static</Keywords>
+			    <Keywords name="Words4">#include #if #ifdef #define #endif #elif #else native native/pre native/pos data code code/await code/tight</Keywords>
+        </KeywordLists>
+        <Styles>
+            <WordsStyle name="DEFAULT" styleID="11" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" />
+            <WordsStyle name="FOLDEROPEN" styleID="12" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" />
+            <WordsStyle name="FOLDERCLOSE" styleID="13" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" />
+            <WordsStyle name="KEYWORD1" styleID="5" fgColor="8000FF" bgColor="FFFFFF" fontName="" fontStyle="0" />
+            <WordsStyle name="KEYWORD2" styleID="6" fgColor="0000FF" bgColor="FFFFFF" fontName="" fontStyle="1" />
+            <WordsStyle name="KEYWORD3" styleID="7" fgColor="CC0000" bgColor="FFFFFF" fontName="" fontStyle="1" />
+            <WordsStyle name="KEYWORD4" styleID="8" fgColor="004040" bgColor="80FFFF" fontName="" fontStyle="5" />
+            <WordsStyle name="COMMENT" styleID="1" fgColor="008040" bgColor="FFFFFF" fontName="" fontStyle="0" />
+            <WordsStyle name="COMMENT LINE" styleID="2" fgColor="008040" bgColor="FFFFFF" fontName="" fontStyle="0" />
+            <WordsStyle name="NUMBER" styleID="4" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" />
+            <WordsStyle name="OPERATOR" styleID="10" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" />
+            <WordsStyle name="DELIMINER1" styleID="14" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" />
+            <WordsStyle name="DELIMINER2" styleID="15" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" />
+            <WordsStyle name="DELIMINER3" styleID="16" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" />
+        </Styles>
+    </UserLang>
+</NotepadPlus>
