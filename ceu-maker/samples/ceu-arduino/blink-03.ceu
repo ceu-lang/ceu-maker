@@ -1,28 +1,28 @@
 #include "arduino/arduino.ceu"
 
-output bool PIN_11;
-output bool PIN_12;
-output bool PIN_13;
+output bool PIN_04;
+output bool PIN_05;
+output bool PIN_06;
 
 par do
     loop do
-        emit PIN_11(HIGH);
+        emit PIN_04(HIGH);
         await 1s;
-        emit PIN_11(LOW);
+        emit PIN_04(LOW);
         await 1s;
     end
 with
     loop do
-        emit PIN_12(HIGH);
+        emit PIN_05(HIGH);
         await 500ms;
-        emit PIN_12(LOW);
+        emit PIN_05(LOW);
         await 500ms;
     end
 with
     loop do
-        emit PIN_13(HIGH);
+        emit PIN_06(HIGH);
         await 250ms;
-        emit PIN_13(LOW);
+        emit PIN_06(LOW);
         await 250ms;
     end
 end
