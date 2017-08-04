@@ -5,23 +5,12 @@
 #include "pico/keys.ceu"
 #include "pico/colors.ceu"
 
-native/plain _none, _yesno, _integer, _real, _text;
+native/plain _text;
 native/pre do
     ##include <time.h>
-    typedef void  none;
-    typedef bool  yesno;
-    typedef int   integer;
-    typedef float real;
     typedef char* text;
 end
-#define none    void
-#define yesno   bool
-#define integer int
-#define real    float
 #define text    _text
-#define yes     true
-#define no      false
-#define NEVER   FOREVER
 
 #define X(x) ((x)+LOG_W/2)
 #define Y(y) (LOG_H/2-(y))
@@ -62,12 +51,12 @@ output (int,int,int)     WINDOW_SET_CLEAR_COLOR_RGB;
 output (bool)            WINDOW_SET_GRID;
 output (int,int,int,int) WINDOW_SET_SIZE;
 output (text)            WINDOW_SET_TITLE;
-output (void)            WINDOW_CLEAR;
-//output (yesno)           WINDOW_SET_FULLSCREEN;
+output (none)            WINDOW_CLEAR;
+//output (yes/no)           WINDOW_SET_FULLSCREEN;
 
 output (bool)            FRAMES_SET;
 input  (int)             FRAMES_UPDATE;
-input  (void)            FRAMES_REDRAW;
+input  (none)            FRAMES_REDRAW;
 
 input (int)              KEY_PRESS;
 input (int)              KEY_UNPRESS;
@@ -100,6 +89,10 @@ output (text)            SOUND_PLAY;
 //input  &[255]byte        NET_RECEIVE;
 input  (int,byte&&)      NET_RECEIVE;
 output (int,byte&&)      NET_SEND;
+
+input  (byte)            SERIAL_RECEIVE_BYTE;
+input  (int,byte&&)      SERIAL_RECEIVE;
+output (int,byte&&)      SERIAL_SEND;
 
 #ifndef NET_SET_UDP_PORT_RECV
 #define NET_SET_UDP_PORT_RECV 2000
@@ -255,7 +248,7 @@ native/pos do
                     }
 #if 0
                     case CEU_OUTPUT_WINDOW_SET_FULLSCREEN: {
-                        yesno* full = (yesno*) p2.ptr;
+                        bool* full = (bool*) p2.ptr;
                         SDL_SetWindowFullscreen(WIN, (full ? SDL_WINDOW_FULLSCREEN : 0));
                         {
                             int win_w, win_h;
@@ -725,7 +718,7 @@ watching sdl do
         /* KEY */
         par do
             // PRESS -> PRESS
-            code/await SDL_KeyDown (var int key) -> void do
+            code/await SDL_KeyDown (var int key) -> none do
                 await async (key) do
                     emit KEY_PRESS(key);
                 end
@@ -737,7 +730,7 @@ watching sdl do
             end
         with
             // RELEASE -> UNPRESS
-            code/await SDL_KeyUp (var int key) -> void do
+            code/await SDL_KeyUp (var int key) -> none do
                 await async (key) do
                     emit KEY_UNPRESS(key);
                 end
@@ -752,7 +745,7 @@ watching sdl do
         /* MOUSE */
         par do
             // DOWN -> CLICK
-            code/await SDL_MouseDown (var int x, var int y) -> void do
+            code/await SDL_MouseDown (var int x, var int y) -> none do
                 await async (x,y) do
                     emit MOUSE_CLICK(0,_X(x),_Y(y));
                 end
@@ -764,7 +757,7 @@ watching sdl do
             end
         with
             // UP -> UNCLICK
-            code/await SDL_MouseUp (var int x, var int y) -> void do
+            code/await SDL_MouseUp (var int x, var int y) -> none do
                 await async (x,y) do
                     emit MOUSE_UNCLICK(0,_X(x),_Y(y));
                 end
@@ -776,7 +769,7 @@ watching sdl do
             end
         with
             // MOTION -> MOVE
-            code/await SDL_MouseMotion (var int x, var int y) -> void do
+            code/await SDL_MouseMotion (var int x, var int y) -> none do
                 await async (x,y) do
                     emit MOUSE_MOVE(_X(x),_Y(y));
                 end
@@ -804,6 +797,34 @@ watching sdl do
                 end
             end
         end
+    with
+//#if defined(_POSIX)
+#if defined(_XXX)
+        native/pre do
+            ##include <fcntl.h>
+        end
+
+        var int fd = _open("/dev/ttyACM0", _O_RDONLY);
+        _ceu_dbg_assert(fd != -1);
+        do finalize with
+            _close(fd);
+        end
+        var int flags = _fcntl(fd, _F_GETFL, 0);
+        var int ok    = _fcntl(fd, _F_SETFL, flags|_O_NONBLOCK);
+        _ceu_dbg_assert(ok == 0);
+
+        await async (fd) do
+            loop do
+                var byte c = _;
+                var int ret = _read(fd,&&c,1);
+                if ret == 1 then
+                    emit SERIAL_RECEIVE_BYTE(c);
+                end
+            end
+        end
+#else
+        await FOREVER;
+#endif
     with
         do/_
             #define _STRINGIFY(X) #X

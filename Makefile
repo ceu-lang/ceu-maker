@@ -20,6 +20,7 @@ arduino:
 	cp -Rf $(CEU_ARDUINO_DIR)/samples/            ceu-maker/samples/ceu-arduino/
 	cp -Rf $(CEU_ARDUINO_DIR)/include/arduino/    ceu-maker/run/ceu/include/
 	rm -Rf ceu-maker/run/ceu/env/arduino/
+	mkdir ceu-maker/run/ceu/env/arduino/
 	cp -Rf $(CEU_ARDUINO_DIR)/env/                ceu-maker/run/ceu/env/arduino/
 
 sdl:

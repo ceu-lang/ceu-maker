@@ -33,7 +33,7 @@ SOFTWARE.
 PAK = {
     lua_exe = 'lua5.3',
     ceu_ver = '0.30-alpha',
-    ceu_git = '44b74341ffcbf18fab0aea3507fde5072a59f5c7',
+    ceu_git = 'd3eb932b2fa3bf7cf191418ca02ae2872adc24c0',
     files = {
         ceu_c =
             [====[
@@ -56,7 +56,7 @@ typedef struct tceu_callback {
 
 static tceu_callback_ret ceu_callback (int cmd, tceu_callback_arg p1, tceu_callback_arg p2, const char* file, u32 line);
 
-#if 0
+#if === CEU_CALLBACKS_LINES ===
 #define ceu_callback_void_void(cmd)                     \
         ceu_callback(cmd, (tceu_callback_arg){},        \
                           (tceu_callback_arg){},        \
@@ -172,7 +172,7 @@ typedef struct {
     u8    is_ring:    1;
     u8    is_dyn:     1;
     u8    is_freezed: 1;
-    byte* buf;              /* [STRING] buf must have max+1 bytes */
+    byte* buf;
 } tceu_vector;
 
 #define ceu_vector_idx(vec,idx)            ((vec)->is_ring ? (((vec)->ini + idx) % (vec)->max) : idx)
@@ -211,11 +211,6 @@ void ceu_vector_init (tceu_vector* vector, usize max, bool is_ring,
     vector->is_ring    = is_ring;
     vector->is_freezed = 0;
     vector->buf        = buf;
-
-    /* [STRING] */
-    if (vector->buf != NULL) {
-        //vector->buf[vector->max] = '\0';
-    }
 }
 
 byte* ceu_vector_setmax (tceu_vector* vector, usize len, bool freeze) {
@@ -233,7 +228,7 @@ byte* ceu_vector_setmax (tceu_vector* vector, usize len, bool freeze) {
         vector->buf = (byte*) ceu_callback_ptr_size(
                                 CEU_CALLBACK_REALLOC,
                                 vector->buf,
-                                len*vector->unit + 1    /* [STRING] +1 */
+                                len*vector->unit
                               ).value.ptr;
     }
 
@@ -301,10 +296,6 @@ void ceu_vector_setlen_ex (tceu_vector* vector, usize len, bool grow,
                 ceu_callback_assert_msg_ex(len==0, "access out of bounds",
                                            file, line);
             }
-        }
-        /* [STRING] */
-        if (vector->buf != NULL) {
-            //vector->buf[vector->max] = '\0';
         }
     }
 
@@ -425,7 +416,7 @@ void ceu_pool_free (tceu_pool* pool, byte* val) {
             [====[
 #define CEU_FEATURES_LONGJMP
 
-=== FEATURES ===        /* CEU_FEATURES */
+=== CEU_FEATURES ===        /* CEU_FEATURES */
 
 #include <stddef.h>     /* offsetof */
 #include <stdlib.h>     /* NULL */
@@ -465,8 +456,8 @@ void ceu_pool_free (tceu_pool* pool, byte* val) {
 
 typedef u16 tceu_nevt;   /* TODO */
 typedef u16 tceu_nseq;   /* TODO */
-typedef === TCEU_NTRL === tceu_ntrl;
-typedef === TCEU_NLBL === tceu_nlbl;
+typedef === CEU_TCEU_NTRL === tceu_ntrl;
+typedef === CEU_TCEU_NLBL === tceu_nlbl;
 
 #define CEU_API
 CEU_API void ceu_start (tceu_callback* cb, int argc, char* argv[]);
@@ -588,8 +579,8 @@ typedef struct tceu_isr {
 
 /*****************************************************************************/
 
-/* NATIVE_PRE */
-=== NATIVE_PRE ===
+/* CEU_NATIVE_PRE */
+=== CEU_NATIVE_PRE ===
 
 /* EVENTS_ENUM */
 
@@ -610,30 +601,30 @@ CEU_INPUT__SEQ,
     CEU_INPUT__ASYNC,
     CEU_INPUT__THREAD,
     CEU_INPUT__WCLOCK,
-    === EXTS_ENUM_INPUT ===
+    === CEU_EXTS_ENUM_INPUT ===
 
 CEU_EVENT__MIN,
-    === EVTS_ENUM ===
+    === CEU_EVTS_ENUM ===
 };
 
 enum {
     CEU_OUTPUT__NONE = 0,
-    === EXTS_ENUM_OUTPUT ===
+    === CEU_EXTS_ENUM_OUTPUT ===
 };
 
-/* ISRS_DEFINES */
+/* CEU_ISRS_DEFINES */
 
-=== ISRS_DEFINES ===
+=== CEU_ISRS_DEFINES ===
 
 /* EVENTS_DEFINES */
 
-=== EXTS_DEFINES_INPUT_OUTPUT ===
+=== CEU_EXTS_DEFINES_INPUT_OUTPUT ===
 
-/* DATAS_HIERS */
+/* CEU_DATAS_HIERS */
 
 typedef s16 tceu_ndata;  /* TODO */
 
-=== DATAS_HIERS ===
+=== CEU_DATAS_HIERS ===
 
 static int ceu_data_is (tceu_ndata* supers, tceu_ndata me, tceu_ndata cmp) {
     return (me==cmp || (me!=0 && ceu_data_is(supers,supers[me],cmp)));
@@ -646,24 +637,24 @@ static void* ceu_data_as (tceu_ndata* supers, tceu_ndata* me, tceu_ndata cmp,
     return me;
 }
 
-/* DATAS_MEMS */
+/* CEU_DATAS_MEMS */
 
-=== DATAS_MEMS ===
-=== DATAS_MEMS_CASTS ===
+=== CEU_DATAS_MEMS ===
+=== CEU_DATAS_MEMS_CASTS ===
 
 /*****************************************************************************/
 
-=== CODES_MEMS ===
+=== CEU_CODES_MEMS ===
 #if 0
 === CODES_ARGS ===
 #endif
 
-=== EXTS_TYPES ===
-=== EVTS_TYPES ===
+=== CEU_EXTS_TYPES ===
+=== CEU_EVTS_TYPES ===
 
 enum {
     CEU_LABEL_NONE = 0,
-    === LABELS ===
+    === CEU_LABELS ===
 };
 
 typedef struct tceu_stk {
@@ -948,13 +939,13 @@ static void ceu_bcast (tceu_evt_occ* occ, tceu_stk* stk, bool is_prim);
 static void ceu_lbl (tceu_evt_occ* _ceu_occ, tceu_stk* _ceu_stk,
                      tceu_code_mem* _ceu_mem, tceu_ntrl _ceu_trlK, tceu_nlbl _ceu_lbl);
 
-=== NATIVE_POS ===
+=== CEU_NATIVE_POS ===
 
-=== CODES_WRAPPERS ===
+=== CEU_CODES_WRAPPERS ===
 
-=== ISRS ===
+=== CEU_ISRS ===
 
-=== THREADS ===
+=== CEU_THREADS ===
 
 /*****************************************************************************/
 
@@ -1019,7 +1010,7 @@ _CEU_LBL_:
     switch (_ceu_lbl) {
         CEU_LABEL_NONE:
             break;
-        === CODES ===
+        === CEU_CODES ===
     }
 }
 
@@ -1159,6 +1150,7 @@ ceu_dbg_assert(0);
                                                 };
                             ceu_bcast(&occ2, &_stk, 0);
                         } else {
+                            CEU_APP.wclk_min_set = 0;   /* maybe resuming a timer, let it be the minimum set */
                             tceu_evt_occ occ2 = { {CEU_INPUT__RESUME,{NULL}}, CEU_APP.seq, occ->params,
                                                   {range.mem,
                                                    (tceu_ntrl)(trlK+1), (tceu_ntrl)(trlK+trl->pse_skip)}
@@ -2407,11 +2399,12 @@ Options:
     --ceu                       Céu phase: compiles Céu into C
     --ceu-input=FILE                input file to compile (Céu source)
     --ceu-output=FILE               output source file to generate (C source)
-    --ceu-line-directives=BOOL      insert `#line` directives in the C output
+    --ceu-line-directives=BOOL      insert `#line` directives in the C output (default `true`)
+    --ceu-callbacks-lines=BOOL      pass current filename and line number to callbacks (default `true`)
 
-    --ceu-features-lua=BOOL         enable `lua` support
-    --ceu-features-thread=BOOL      enable `async/thread` support
-    --ceu-features-isr=BOOL         enable `async/isr` support
+    --ceu-features-lua=BOOL         enable `lua` support (default `false`)
+    --ceu-features-thread=BOOL      enable `async/thread` support (default `false`)
+    --ceu-features-isr=BOOL         enable `async/isr` support (default `false`)
 
     --ceu-err-unused=OPT            effect for unused identifier: error|warning|pass
     --ceu-err-unused-native=OPT                unused native identifier
@@ -2508,6 +2501,7 @@ do
     local T = {
         ceu_output          = { tostring,  '-'     },
         ceu_line_directives = { toboolean, 'true'  },
+        ceu_callbacks_lines = { toboolean, 'true'  },
         ceu_features_lua    = { toboolean, 'false' },
         ceu_features_thread = { toboolean, 'false' },
         ceu_features_isr    = { toboolean, 'false' },
@@ -2753,24 +2747,24 @@ local T = {
     },
 
     {
-        '`do` or `await` or `%[` or location or `{` or `%(` or `not` or `%-` or `%+` or `~` or `%$%$` or `&&` or `&` or `call` or `sizeof` or `null` or number or `false` or `true` or `"` or string literal or `emit` or `call/recursive` or `val` or `new` or `spawn` or `_` or `request` or `watching`',
+        '`do` or `await` or `%[` or location or `{` or `%(` or `not` or `%-` or `%+` or `~` or `%$%$` or `&&` or `&` or `call` or `sizeof` or `null` or number or `false` or `true` or `off` or `on` or `no` or `yes` or `"` or string literal or `emit` or `call/recursive` or `val` or `new` or `spawn` or `_` or `request` or `watching`',
         'expression'
     },
     {
-        '`not` or `%-` or `%+` or `~` or `%$%$` or `%*` or `%$` or `&&` or `&` or `call` or internal identifier or native identifier or `outer` or `{` or `%(` or `sizeof` or `null` or number or `false` or `true` or `"` or string literal',
+        '`not` or `%-` or `%+` or `~` or `%$%$` or `%*` or `%$` or `&&` or `&` or `call` or internal identifier or native identifier or `outer` or `{` or `%(` or `sizeof` or `null` or number or `false` or `true` or `off` or `on` or `no` or `yes` or `"` or string literal',
         'expression'
     },
 
     {
-        '`code` or `input/output` or `output/input` or `data` or `native` or `do` or `if` or `loop` or `every` or `lock` or `spawn` or `par/or` or `par/and` or `watching` or `pause/if` or `await` or `atomic` or `pre` or `{` or `%[` or `lua` or `var` or `nothing` or `pool` or `event` or `input` or `output` or `deterministic` or location or `%(` or `emit` or `call/recursive` or `call` or `request` or `kill` or `not` or `%-` or `%+` or `~` or `%$%$` or `&&` or `&` or `sizeof` or `null` or number or `false` or `true` or `"` or string literal or `escape` or `break` or `continue` or `par` or end of file',
+        '`code` or `input/output` or `output/input` or `data` or `native` or `do` or `if` or `loop` or `every` or `lock` or `spawn` or `par/or` or `par/and` or `watching` or `pause/if` or `await` or `atomic` or `pre` or `{` or `%[` or `lua` or `var` or `nothing` or `pool` or `event` or `input` or `output` or `deterministic` or location or `%(` or `emit` or `call/recursive` or `call` or `request` or `kill` or `not` or `%-` or `%+` or `~` or `%$%$` or `&&` or `&` or `sizeof` or `null` or number or `false` or `true` or `off` or `on` or `no` or `yes` or `"` or string literal or `escape` or `break` or `continue` or `par` or end of file',
         'statement'
     },
     {
-        '`code` or `input/output` or `output/input` or `data` or `native` or `do` or `if` or `loop` or `every` or `lock` or `spawn` or `par/or` or `par/and` or `watching` or `pause/if` or `await` or `atomic` or `pre` or `{` or `%[` or `lua` or `var` or `nothing` or `pool` or `event` or `input` or `output` or `deterministic` or location or `%(` or `emit` or `call/recursive` or `call` or `request` or `kill` or `not` or `%-` or `%+` or `~` or `%$%$` or `&&` or `&` or `sizeof` or `null` or number or `false` or `true` or `"` or string literal or `escape` or `break` or `continue` or `par` or `with`',
+        '`code` or `input/output` or `output/input` or `data` or `native` or `do` or `if` or `loop` or `every` or `lock` or `spawn` or `par/or` or `par/and` or `watching` or `pause/if` or `await` or `atomic` or `pre` or `{` or `%[` or `lua` or `var` or `nothing` or `pool` or `event` or `input` or `output` or `deterministic` or location or `%(` or `emit` or `call/recursive` or `call` or `request` or `kill` or `not` or `%-` or `%+` or `~` or `%$%$` or `&&` or `&` or `sizeof` or `null` or number or `false` or `true` or `off` or `on` or `no` or `yes` or `"` or string literal or `escape` or `break` or `continue` or `par` or `with`',
         'statement'
     },
     {
-        '`code` or `input/output` or `output/input` or `data` or `native` or `do` or `if` or `loop` or `every` or `lock` or `spawn` or `par/or` or `par/and` or `watching` or `pause/if` or `await` or `atomic` or `pre` or `{` or `%[` or `lua` or `var` or `nothing` or `pool` or `event` or `input` or `output` or `deterministic` or location or `%(` or `emit` or `call/recursive` or `call` or `request` or `kill` or `not` or `%-` or `%+` or `~` or `%$%$` or `&&` or `&` or `sizeof` or `null` or number or `false` or `true` or `"` or string literal or `escape` or `break` or `continue` or `par` or `end`',
+        '`code` or `input/output` or `output/input` or `data` or `native` or `do` or `if` or `loop` or `every` or `lock` or `spawn` or `par/or` or `par/and` or `watching` or `pause/if` or `await` or `atomic` or `pre` or `{` or `%[` or `lua` or `var` or `nothing` or `pool` or `event` or `input` or `output` or `deterministic` or location or `%(` or `emit` or `call/recursive` or `call` or `request` or `kill` or `not` or `%-` or `%+` or `~` or `%$%$` or `&&` or `&` or `sizeof` or `null` or number or `false` or `true` or `off` or `on` or `no` or `yes` or `"` or string literal or `escape` or `break` or `continue` or `par` or `end`',
         'statement'
     },
 }
@@ -2857,7 +2851,7 @@ end
                         if err==true or IGN>0 then return false end
                         return fail(i,err)
                     end) * P(false)
-                           -- (avoids "left recursive" error (explicit fail))
+                           -- (anones "left recursive" error (explicit fail))
 
     if not nox then
         ret = ret * x
@@ -2916,17 +2910,19 @@ local EE = function (msg)
 end
 
 -->>> OK
-local TYPES = P'bool' + 'byte'
-            + 'f32' + 'f64' + 'float'
-            + 'int'
+local TYPES = P'bool' + 'yes/no' + 'on/off'
+            + 'byte'
+            + 'r32' + 'r64' + 'real'
+            + 'integer' + 'int'
             + 's16' + 's32' + 's64' + 's8'
             + 'ssize'
             + 'u16' + 'u32' + 'u64' + 'u8'
-            + 'uint' + 'usize' + 'void'
+            + 'uint' + 'usize' + 'none'
 --<<<
 
 -- must be in reverse order (to count superstrings as keywords)
 KEYS = P
+'yes' +
 'with' +
 'watching' +
 'var' +
@@ -2953,11 +2949,16 @@ KEYS = P
 'output' +
 'outer' +
 'or' +
+'on' +
+'off' +
 'null' +
 'nothing' +
 'not' +
+'none' +
 'nohold' +
+'no' +
 'new' +
+'NEVER' +
 'native' +
 'lua' +
 'loop' +
@@ -3150,9 +3151,9 @@ GG = { [1] = x * V'_Stmts' * V'Y' * (P(-1) + E('end of file'))
 
     -- TYPEPARS
 
-    , Code_Pars  = #KK'(' * PARENS(P'void' + LIST(V'__Dcls'))
-    , _Code_Pars = #KK'(' * PARENS(P'void' + LIST(V'__Dcls'))
-    , Code_Ret = (V'Type' + CK'FOREVER')
+    , Code_Pars  = #KK'(' * PARENS(P'none' + LIST(V'__Dcls'))
+    , _Code_Pars = #KK'(' * PARENS(P'none' + LIST(V'__Dcls'))
+    , Code_Ret = (V'Type' + K'NEVER'*Cc'FOREVER')
 
 -- DATA
 
@@ -3452,13 +3453,17 @@ GG = { [1] = x * V'_Stmts' * V'Y' * (P(-1) + E('end of file'))
 
     , BOOL   = K'false' / function() return 0 end
              + K'true'  / function() return 1 end
+             + K'off'   / function() return 0 end
+             + K'on'    / function() return 1 end
+             + K'no'    / function() return 0 end
+             + K'yes'   / function() return 1 end
     , STRING = CKK( CKK'"' * (P(1)-'"'-'\n')^0 * K'"', 'string literal' )
     , NULL   = CK'null'     -- TODO: the idea is to get rid of this
 
     , Outer   = K'outer'
 
 ---------
-                -- "Ct" as a special case to avoid "too many captures" (HACK_1)
+                -- "Ct" as a special case to anone "too many captures" (HACK_1)
     , _Stmts  = Ct (( V'__Stmt_Block' * (KK';'^0) +
                       V'__Stmt_Simple' * V'__seqs'
                    )^0
@@ -4124,7 +4129,7 @@ F = {
                                 node('_Evt_set', me.ln,
                                     false,
                                     node('Type', me.ln,
-                                        node('ID_prim', me.ln, 'void')),
+                                        node('ID_prim', me.ln, 'none')),
                                     'ok_unlocked',
                                     false))))
         lock.is_predefined = true
@@ -4243,7 +4248,7 @@ error'TODO: luacov never executes this?'
         local is_void do
             if Type then
                 local ID_prim,mod = unpack(Type)
-                is_void = (ID_prim.tag=='ID_prim' and ID_prim[1]=='void' and (not mod))
+                is_void = (ID_prim.tag=='ID_prim' and ID_prim[1]=='none' and (not mod))
             end
         end
 
@@ -4915,7 +4920,7 @@ error'TODO: luacov never executes this?'
         local Type, snd = unpack(me)
         local ID_prim, mod = unpack(Type)
         if (not snd) and
-           ID_prim.tag=='ID_prim' and ID_prim[1]=='void' and (not mod)
+           ID_prim.tag=='ID_prim' and ID_prim[1]=='none' and (not mod)
         then
             AST.remove(me,1)
         end
@@ -4933,6 +4938,15 @@ error'TODO: luacov never executes this?'
         return node('Exp_.', me.ln, '.',
                 node('Exp_1*', me.ln, '*', e),
                 field)
+    end,
+
+    ID_prim = function (me)
+        me.tag = 'ID_prim'
+        if me[1]=='on/off' or me[1]=='yes/no' then
+            me[1] = 'bool'
+        elseif me[1]=='integer' then
+            me[1] = 'int'
+        end
     end,
 
     NUMBER = function (me)
@@ -5177,7 +5191,7 @@ end
 do
     local __contains_num = {
         -- TODO: should 'int' be bottom?
-        { 'f64','f32','float','int' },
+        { 'r64','r32','real','int' },
         { 'u64','u32','u16','u8','int' },
         { 'usize','uint','int' },
         { 'ssize','int' },
@@ -5253,7 +5267,7 @@ do
 -- VOID <- _
         -- var& void ptr = &_f()
         -- var& void p = &v;
-        elseif TYPES.check(tp1,'void') and tp2_ID then
+        elseif TYPES.check(tp1,'none') and tp2_ID then
             return true
 
 -- NUMERIC TYPES
@@ -5276,8 +5290,8 @@ do
             if not tp2_is_nat then
                 tp2 = TYPES.pop(tp2)
             end
-            if TYPES.check(tp1,'void') then
-                -- void&& <- ?&&
+            if TYPES.check(tp1,'none') then
+                -- none&& <- ?&&
                 return true
             elseif TYPES.check(tp2,'null') then
                 -- ?&& <- null
@@ -5439,7 +5453,7 @@ EXPS.F = {
     NUMBER = function (me)
         local v = unpack(me)
         if math.type(tonumber(v)) == 'float' then
-            me.info = INFO.new(me, 'Val', v, 'float')
+            me.info = INFO.new(me, 'Val', v, 'real')
         else
             me.info = INFO.new(me, 'Val', v, 'int')
         end
@@ -6324,9 +6338,9 @@ DCLS.F = {
         local prims = {
             bool  = { is_num=false, is_int=false },
             byte  = { is_num=true,  is_int=true  },
-            f32   = { is_num=true,  is_int=false },
-            f64   = { is_num=true,  is_int=false },
-            float = { is_num=true,  is_int=false },
+            r32   = { is_num=true,  is_int=false },
+            r64   = { is_num=true,  is_int=false },
+            real  = { is_num=true,  is_int=false },
             int   = { is_num=true,  is_int=true  },
             s16   = { is_num=true,  is_int=true  },
             s32   = { is_num=true,  is_int=true  },
@@ -6339,7 +6353,7 @@ DCLS.F = {
             u8    = { is_num=true,  is_int=true  },
             uint  = { is_num=true,  is_int=true  },
             usize = { is_num=true,  is_int=true  },
-            void  = { is_num=false, is_int=false },
+            none  = { is_num=false, is_int=false },
             null  = { is_num=false, is_int=false },
             _     = { is_num=true,  is_int=true  },
         }
@@ -6459,9 +6473,9 @@ DCLS.F = {
         end
 
         local ID_prim,mod = unpack(Type)
-        if ID_prim.tag=='ID_prim' and ID_prim[1]=='void' and (not mod) then
+        if ID_prim.tag=='ID_prim' and ID_prim[1]=='none' and (not mod) then
             ASR(alias, me,
-                'invalid declaration : variable cannot be of type `void`') 
+                'invalid declaration : variable cannot be of type `none`')
         end
 
         local inits = DCLS.F.Var__POS__POS(me)
@@ -6565,11 +6579,11 @@ DCLS.F = {
                 'invalid declaration : vector inside `code/tight`')
         end
 
-        -- vector[] void vec;
+        -- vector[] none vec;
         local ID_prim,mod = unpack(Type)
-        if ID_prim.tag=='ID_prim' and ID_prim[1]=='void' and (not mod) then
+        if ID_prim.tag=='ID_prim' and ID_prim[1]=='none' and (not mod) then
             ASR(false, me,
-                'invalid declaration : vector cannot be of type `void`') 
+                'invalid declaration : vector cannot be of type `none`')
         end
     end,
 
@@ -6867,9 +6881,9 @@ error'oi'
         for _, Type in ipairs(me) do
             if Type.tag == 'Type' then
                 local ID_prim,mod = unpack(Type)
-                if ID_prim.tag=='ID_prim' and ID_prim[1]=='void' and (not mod) then
+                if ID_prim.tag=='ID_prim' and ID_prim[1]=='none' and (not mod) then
                     ASR(false, me,
-                        'invalid declaration : unexpected type `void`')
+                        'invalid declaration : unexpected type `none`')
                 end
             end
         end
@@ -7171,7 +7185,7 @@ CONSTS = {
 
 F = {
     NUMBER = function (me)
-        me.is_const = (TYPES.is_int(me.info.tp) and 'int') or 'float'
+        me.is_const = (TYPES.is_int(me.info.tp) and 'int') or 'real'
     end,
 
     SIZEOF = function (me)
@@ -7191,8 +7205,8 @@ F = {
     __Exp_num_num = function (me)
         local _, e1, e2 = unpack(me)
         if e1.is_const and e2.is_const then
-            if e1.is_const=='float' or e2.is_const=='float' then
-                me.is_const = 'float'
+            if e1.is_const=='real' or e2.is_const=='real' then
+                me.is_const = 'real'
             elseif e1.is_const=='int' or e2.is_const=='int' then
                 me.is_const = 'int'
             else
@@ -10529,7 +10543,7 @@ CEU_CODE_]]..me.id_..[[ (tceu_code_mem_]]..me.id_..[[ mem_,
             me.mems.wrapper = me.mems.wrapper .. [[
     ceu_lbl(NULL, NULL, (tceu_code_mem*)mem, 0, lbl);
 ]]
-            if Type and (not TYPES.check(Type,'void')) then
+            if Type and (not TYPES.check(Type,'none')) then
                 me.mems.wrapper = me.mems.wrapper..[[
     return mem_._ret;
 ]]
@@ -10686,13 +10700,13 @@ static ]]..cc..'* CEU_OPTION_'..cc..' ('..cc..[[* opt, char* file, int line) {
             local ptr = (is_alias and '*' or '')
             if TYPES.is_nat(TYPES.get(tp,1)) then
                 return [[
-]]..TYPES.toc(tp)..' ('..ptr..dcl.id_..')['..V(dim)..[[+1]; /* [STRING] +1 */
+]]..TYPES.toc(tp)..' ('..ptr..dcl.id_..')['..V(dim)..[[];
 ]]
             else
                 local ret = ''
                 if dim.is_const and (not is_alias) then
                     ret = ret .. [[
-]]..TYPES.toc(tp)..' '..dcl.id_..'_buf['..V(dim)..[[+1];    /* [STRING] +1 */
+]]..TYPES.toc(tp)..' '..dcl.id_..'_buf['..V(dim)..[[];
 ]]
                 end
                 return ret .. [[
@@ -11445,12 +11459,6 @@ if (0)
     _ceu_mem->trails_n = ]]..me.trails_n..[[;
     memset(&_ceu_mem->_trails, 0, ]]..me.trails_n..[[*sizeof(tceu_trl));
 ]])
-            local ret = AST.get(me,'', 4,'Block', 1,'Stmts', 1,'Code_Ret', 1,'', 2,'Type')
-            if ret and (not TYPES.check(ret,'void')) then
-                LINE(me, [[
-    ]]..TYPES.toc(ret)..[[ __ceu_ret_]]..me.n..[[;
-]])
-            end
         end
 
         CONC(me, body)
@@ -12095,33 +12103,7 @@ if (! ]]..CUR('__and_'..me.n..'_'..i)..[[) {
     Set_Exp = function (me)
         local fr, to = unpack(me)
 
-        if false then
---[=[
-        if to.info.dcl.id == '_ret' then
-            local code = AST.par(me, 'Code')
-            if code then
-                local _,mods = unpack(code)
-                if mods.tight then
-                    if code.dyn_base then
-                        code = code.dyn_base
-                    end
-                    LINE(me, [[
-((tceu_code_args_]]..code.id_..[[*) _ceu_occ)->_ret = ]]..V(fr)..[[;
-]])
-                else
-                    LINE(me, [[
-__ceu_ret_]]..code.n..' = '..V(fr)..[[;
-]])
-                end
-            else
-                LINE(me, [[
-{   CEU_APP.end_ok=1; CEU_APP.end_val=]]..V(fr)..[[;
-    ceu_callback_void_void(CEU_CALLBACK_TERMINATING);
-}
-]])
-            end
-]=]
-        elseif AST.get(to,'Loc',1,'Exp_$') then
+        if AST.get(to,'Loc',1,'Exp_$') then
             -- $vec = ...
             local _,vec = unpack(to[1])
             LINE(me, [[
@@ -12277,7 +12259,9 @@ if (_ceu_occ!=NULL && _ceu_occ->evt.id==CEU_INPUT__CODE_TERMINATED) {
                 LINE(me, [[
     {
         const char* __ceu_str = ]]..V(fr)..[[;
-        usize __ceu_len = strlen(__ceu_str);
+        usize __ceu_len = strlen(__ceu_str) + 1;  /* +1 = '\0' */
+]])
+        LINE(me, [[
         ceu_vector_setlen(&]]..V(to)..', ('..V(to)..[[.len + __ceu_len), 1);
         ceu_vector_buf_set(&]]..V(to)..[[,
                            __ceu_nxt,
@@ -12310,7 +12294,7 @@ if (_ceu_occ!=NULL && _ceu_occ->evt.id==CEU_INPUT__CODE_TERMINATED) {
                 LINE(me, [[
     if (lua_isstring(]]..LUA(me)..[[,-1)) {
         const char* __ceu_str = lua_tostring(]]..LUA(me)..[[, -1);
-        usize __ceu_len = lua_rawlen(]]..LUA(me)..[[, -1);
+        usize __ceu_len = lua_rawlen(]]..LUA(me)..[[, -1) + 1;  /* +1 = '\0' */
         ceu_vector_setlen_ex(&]]..V(to)..', ('..V(to)..[[.len + __ceu_len), 1,
                              __FILE__, __LINE__-4);
         ceu_vector_buf_set(&]]..V(to)..[[,
@@ -12931,7 +12915,7 @@ _CEU_LUA_ERR_]]..me.n..[[:;
             if p.info.tag=='Vec' and p.info.dcl and p.info.dcl.tag=='Vec' then
                 if TYPES.check(tp,'byte') then
                     LINE(me, [[
-    lua_pushlstring(]]..LUA(me)..[[,(char*)]]..V(p)..[[.buf,]]..V(p)..[[.len);
+    lua_pushlstring(]]..LUA(me)..[[,(char*)]]..V(p)..[[.buf,]]..V(p)..[[.len-1);
 ]])
                 else
                     error 'not implemented'
@@ -12942,7 +12926,7 @@ _CEU_LUA_ERR_]]..me.n..[[:;
 ]])
             elseif TYPES.is_num(tp) then
                 local tp_id = unpack(TYPES.ID_plain(tp))
-                if tp_id=='float' or tp_id=='f32' or tp_id=='f64' then
+                if tp_id=='real' or tp_id=='r32' or tp_id=='r64' then
                     LINE(me, [[
     lua_pushnumber(]]..LUA(me)..[[,]]..V(p)..[[);
 ]])
@@ -13012,28 +12996,29 @@ end
 
 -- CEU.C
 local c = PAK.files.ceu_c
-local c = SUB(c, '=== FEATURES ===',         features)
-local c = SUB(c, '=== NATIVE_PRE ===',       CODES.native.pre)
-local c = SUB(c, '=== EXTS_ENUM_INPUT ===',  MEMS.exts.enum_input)
-local c = SUB(c, '=== ISRS_DEFINES ===',     MEMS.isrs)
-local c = SUB(c, '=== EXTS_DEFINES_INPUT_OUTPUT ===', MEMS.exts.defines_input_output)
-local c = SUB(c, '=== EVTS_ENUM ===',        MEMS.evts.enum)
-local c = SUB(c, '=== DATAS_HIERS ===',      MEMS.datas.hiers)
-local c = SUB(c, '=== DATAS_MEMS ===',       MEMS.datas.mems)
-local c = SUB(c, '=== DATAS_MEMS_CASTS ===', table.concat(MEMS.datas.casts,'\n'))
-local c = SUB(c, '=== EXTS_ENUM_OUTPUT ===', MEMS.exts.enum_output)
-local c = SUB(c, '=== TCEU_NTRL ===',        TYPES.n2uint(AST.root.trails_n))
-local c = SUB(c, '=== TCEU_NLBL ===',        TYPES.n2uint(#LABELS.list))
-local c = SUB(c, '=== CODES_MEMS ===',       MEMS.codes.mems)
+local c = SUB(c, '=== CEU_CALLBACKS_LINES ===', (CEU.opts.ceu_callbacks_lines and '1' or '0'))
+local c = SUB(c, '=== CEU_FEATURES ===',         features)
+local c = SUB(c, '=== CEU_NATIVE_PRE ===',       CODES.native.pre)
+local c = SUB(c, '=== CEU_EXTS_ENUM_INPUT ===',  MEMS.exts.enum_input)
+local c = SUB(c, '=== CEU_ISRS_DEFINES ===',     MEMS.isrs)
+local c = SUB(c, '=== CEU_EXTS_DEFINES_INPUT_OUTPUT ===', MEMS.exts.defines_input_output)
+local c = SUB(c, '=== CEU_EVTS_ENUM ===',        MEMS.evts.enum)
+local c = SUB(c, '=== CEU_DATAS_HIERS ===',      MEMS.datas.hiers)
+local c = SUB(c, '=== CEU_DATAS_MEMS ===',       MEMS.datas.mems)
+local c = SUB(c, '=== CEU_DATAS_MEMS_CASTS ===', table.concat(MEMS.datas.casts,'\n'))
+local c = SUB(c, '=== CEU_EXTS_ENUM_OUTPUT ===', MEMS.exts.enum_output)
+local c = SUB(c, '=== CEU_TCEU_NTRL ===',        TYPES.n2uint(AST.root.trails_n))
+local c = SUB(c, '=== CEU_TCEU_NLBL ===',        TYPES.n2uint(#LABELS.list))
+local c = SUB(c, '=== CEU_CODES_MEMS ===',       MEMS.codes.mems)
 --local c = SUB(c, '=== CODES_ARGS ===',       MEMS.codes.args)
-local c = SUB(c, '=== EXTS_TYPES ===',       MEMS.exts.types)
-local c = SUB(c, '=== EVTS_TYPES ===',       MEMS.evts.types)
-local c = SUB(c, '=== LABELS ===',           labels)
-local c = SUB(c, '=== NATIVE_POS ===',       CODES.native.pos)
-local c = SUB(c, '=== ISRS ===',             CODES.isrs)
-local c = SUB(c, '=== THREADS ===',          CODES.threads)
-local c = SUB(c, '=== CODES_WRAPPERS ===',   MEMS.codes.wrappers)
-local c = SUB(c, '=== CODES ===',            AST.root.code)
+local c = SUB(c, '=== CEU_EXTS_TYPES ===',       MEMS.exts.types)
+local c = SUB(c, '=== CEU_EVTS_TYPES ===',       MEMS.evts.types)
+local c = SUB(c, '=== CEU_LABELS ===',           labels)
+local c = SUB(c, '=== CEU_NATIVE_POS ===',       CODES.native.pos)
+local c = SUB(c, '=== CEU_ISRS ===',             CODES.isrs)
+local c = SUB(c, '=== CEU_THREADS ===',          CODES.threads)
+local c = SUB(c, '=== CEU_CODES_WRAPPERS ===',   MEMS.codes.wrappers)
+local c = SUB(c, '=== CEU_CODES ===',            AST.root.code)
 
 if CEU.opts.ceu_output == '-' then
     print('\n\n/* CEU_C */\n\n'..c)
