@@ -20,7 +20,7 @@ Céu-Maker is a programming environment that integrates `ceu-arduino` and
     - Observe the application behavior.
 - Céu-Arduino
     - Plug the Arduino board you want to test.
-    - Execute `ceu-maker/arduino-1.8.3/arduino` and configure `Tools->Board` and `Tools->Port`.
+    - Execute `ceu-maker/arduino-1.8.3/arduino.exe` and configure `Tools->Board` and `Tools->Port`.
     - Open the folder `samples/ceu-arduino/`.
     - Drag & Drop the file `blink-01.ceu` into the icon `Céu-Arduino` (`bin/` folder).
     - Observe the application behavior.
@@ -79,7 +79,7 @@ https://gist.github.com/evanwill/0207876c3243bbb6863e65ec5dc3f058
 
 ### Testing
 
-Follow the `Installation -> Testing` instructions above.
+Follow the `Installation->Testing` instructions above.
 
 ### Generate Package
 
@@ -107,7 +107,7 @@ https://www.win-rar.com
                 - Click on the button `OK`.
         - Click on the tab `Text and icon`.
             - Click on the button `Browse` in `Load SFX icon from the file`
-                - Choose path `icos -> cib_192.ico`.
+                - Choose path `icos/cib_192.ico`.
         - Click on the button `OK`.
 - Click on the button `OK`.
 - Move `ceu-maker.exe` to `releases/ceu-maker-vX.XX-XXX.exe`
