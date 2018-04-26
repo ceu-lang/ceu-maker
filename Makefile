@@ -1,5 +1,7 @@
 include Makefile.dirs
 
+LUA = $(PWD)/ceu-maker/run/lua53
+
 all: ceu arduino sdl pico
 
 ceu:
@@ -9,7 +11,8 @@ ceu:
 	cp $(CEU_DIR)/env/*                           ceu-maker/run/ceu/env/
 	cp $(CEU_DIR)/include/c.ceu                   ceu-maker/run/ceu/include/
 	cp $(CEU_DIR)/docs/manual/v0.30/ceu-v0.30.pdf ceu-maker/docs/
-	cp /usr/local/bin/ceu                         ceu-maker/run/ceu.lua
+	cd $(CEU_DIR)/src/lua && $(LUA) pak.lua lua5.3
+	cp $(CEU_DIR)/src/lua/ceu ceu-maker/run/ceu.lua
 
 arduino:
 	#cp $(CEU_ARDUINO_DIR)/docs/manual/v0.30/ceu-arduino-v0.30.pdf ceu-maker/docs/

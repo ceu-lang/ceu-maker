@@ -63,17 +63,17 @@
                 OPEN_EXISTING,
                 FILE_ATTRIBUTE_NORMAL,
                 NULL);
-        ceu_dbg_assert(hSerial != INVALID_HANDLE_VALUE);
+        ceu_assert(hSerial != INVALID_HANDLE_VALUE, "bug found");
     
         DCB dcbSerialParams = {0};
-        ceu_dbg_assert(GetCommState(hSerial,&dcbSerialParams));
+        ceu_assert(GetCommState(hSerial,&dcbSerialParams), "bug found");
     
         dcbSerialParams.BaudRate    = CBR_9600;
         dcbSerialParams.ByteSize    = 8;
         dcbSerialParams.StopBits    = ONESTOPBIT;
         dcbSerialParams.Parity      = NOPARITY;
         dcbSerialParams.fDtrControl = DTR_CONTROL_ENABLE;
-        ceu_dbg_assert(SetCommState(hSerial, &dcbSerialParams));
+        ceu_assert(SetCommState(hSerial, &dcbSerialParams), "bug found");
     
         PurgeComm(hSerial, PURGE_RXCLEAR | PURGE_TXCLEAR);
         Sleep(2000);
@@ -84,8 +84,8 @@
             int nbChar = 3;
             DWORD bytesSend;
     
-            ceu_dbg_assert(WriteFile(hSerial, (void*)buffer, nbChar, &bytesSend, 0));
-            ceu_dbg_assert(bytesSend == nbChar);
+            ceu_assert(WriteFile(hSerial, (void*)buffer, nbChar, &bytesSend, 0), "bug found");
+            ceu_assert(bytesSend == nbChar, "bug found");
     printf(">>> sent\n");
     
             //COMSTAT status;
@@ -106,8 +106,8 @@
                     break;
                 }
             }
-            ceu_dbg_assert(ReadFile(hSerial, buffer, 3, &bytesRead, NULL));
-            ceu_dbg_assert(bytesRead == 3);
+            ceu_assert(ReadFile(hSerial, buffer, 3, &bytesRead, NULL), "bug found");
+            ceu_assert(bytesRead == 3, "bug found");
     
             buffer[3] = '\0';
             printf(">>> %s\n", buffer);
