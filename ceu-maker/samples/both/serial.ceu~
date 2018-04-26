@@ -1,0 +1,123 @@
+#ifdef CEUMAKER_ARDUINO
+
+    #include "arduino/arduino.ceu"
+    
+    native/pre do
+        //##define CEU_ARDUINO_SERIAL_SPEED 9600
+    end
+    
+    input byte SERIAL;
+    output bool PIN_13;
+    
+    loop do
+        var byte a = _;
+        var byte b = _;
+        var byte c = _;
+    
+        a = await SERIAL;
+    
+        emit PIN_13(true);
+        b = await SERIAL;
+    
+        do
+            spawn do
+                loop do
+                    await 2s;
+                    emit PIN_13(true);
+                    await 2s;
+                    emit PIN_13(false);
+                end
+            end
+            c = await SERIAL;
+        end
+    
+        spawn do
+            loop do
+                await 250ms;
+                emit PIN_13(true);
+                await 250ms;
+                emit PIN_13(false);
+            end
+        end
+    
+        _Serial.write(a);
+        _Serial.write(b);
+        _Serial.write(c);
+    
+        await FOREVER;
+    end
+
+#elif defined CEUMAKER_PICO
+    
+    native/pre do
+        ##include <windows.h>
+    end
+    
+    {
+        // OPEN
+    
+        HANDLE hSerial = CreateFile("COM11",
+                GENERIC_READ | GENERIC_WRITE,
+                0,
+                NULL,
+                OPEN_EXISTING,
+                FILE_ATTRIBUTE_NORMAL,
+                NULL);
+        ceu_assert(hSerial != INVALID_HANDLE_VALUE, "bug found");
+    
+        DCB dcbSerialParams = {0};
+        ceu_assert(GetCommState(hSerial,&dcbSerialParams), "bug found");
+    
+        dcbSerialParams.BaudRate    = CBR_9600;
+        dcbSerialParams.ByteSize    = 8;
+        dcbSerialParams.StopBits    = ONESTOPBIT;
+        dcbSerialParams.Parity      = NOPARITY;
+        dcbSerialParams.fDtrControl = DTR_CONTROL_ENABLE;
+        ceu_assert(SetCommState(hSerial, &dcbSerialParams), "bug found");
+    
+        PurgeComm(hSerial, PURGE_RXCLEAR | PURGE_TXCLEAR);
+        Sleep(2000);
+    
+        // WRITE
+        {
+            const char* buffer = "ola";
+            int nbChar = 3;
+            DWORD bytesSend;
+    
+            ceu_assert(WriteFile(hSerial, (void*)buffer, nbChar, &bytesSend, 0), "bug found");
+            ceu_assert(bytesSend == nbChar, "bug found");
+    printf(">>> sent\n");
+    
+            //COMSTAT status;
+            //DWORD errors;
+            //ClearCommError(this->hSerial, &this->errors, &this->status);
+        }
+    
+        // READ
+        {
+            char buffer[10];
+            DWORD bytesRead;
+    
+            while (1) {
+                COMSTAT status;
+                DWORD errors;
+                ClearCommError(hSerial, &errors, &status);
+                if (status.cbInQue == 3) {
+                    break;
+                }
+            }
+            ceu_assert(ReadFile(hSerial, buffer, 3, &bytesRead, NULL), "bug found");
+            ceu_assert(bytesRead == 3, "bug found");
+    
+            buffer[3] = '\0';
+            printf(">>> %s\n", buffer);
+        }
+    
+        // CLOSE
+    
+        CloseHandle(hSerial);
+    }
+    
+    await FOREVER;
+    
+#endif

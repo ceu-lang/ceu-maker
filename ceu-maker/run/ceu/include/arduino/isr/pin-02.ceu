@@ -1,5 +1,0 @@
-input bool PIN_02;
-
-spawn async/isr [_digitalPinToInterrupt(2),_CHANGE] do
-    emit PIN_02(_digitalRead(2) as bool);
-end
