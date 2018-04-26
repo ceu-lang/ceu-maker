@@ -15,6 +15,7 @@ ceu:
 	cp $(CEU_DIR)/src/lua/ceu ceu-maker/run/ceu.lua
 
 arduino:
+	cp $(CEU_ARDUINO_DIR)/docs/manual/v0.20/ceu-arduino-v0.20.pdf ceu-maker/docs/
 	#cp $(CEU_ARDUINO_DIR)/docs/manual/v0.30/ceu-arduino-v0.30.pdf ceu-maker/docs/
 	rm -Rf ceu-maker/samples/ceu-arduino/
 	cp -Rf $(CEU_ARDUINO_DIR)/samples/            ceu-maker/samples/ceu-arduino/
