@@ -43,7 +43,9 @@ To generate a new version of Céu-Maker, use the instructions as follows.
 
 ### Collect all relevant files to Céu-Maker
 
-Clone the source repositories:
+#### Prepare the source repositories
+
+First, clone the source repositories:
 
 ```
 $ git clone https://github.com/fsantanna/ceu
@@ -52,28 +54,36 @@ $ git clone https://github.com/fsantanna/ceu-sdl
 $ git clone https://github.com/fsantanna/pico-ceu
 ```
 
-Checkout the target version for each of the source repositories, e.g.:
+Then, checkout the target version for each of the source repositories, e.g.:
 
 ```
 $ cd ceu/
 $ git checkout v0.30
+$ cd ../ceu-arduino
+$ git checkout v0.30
+$ ... # same for the other repositories
 ```
 
-This step can be skipped if you want to use the `master` branches.
+(This step can be skipped if you want to use the `master` branches.)
 
-Edit `Makefile.dirs` to point to the source repositories:
+#### Copy to Céu-Maker
+
+Now, back to the `ceu-maker` repository, edit `Makefile.dirs` to point to the
+source repositories:
 
 ```
 $ vi Makefile.dirs
 ```
 
-Run `make` to copy the files from the source repositories to `ceu-maker/`:
+Then, run `make` to copy the files from the source repositories to
+`ceu-maker/`:
 
 ```
 $ make
 ```
 
-If the command `make` does not exist, follow the instructions in the link below:
+If the command `make` does not exist, follow the instructions in the link
+below:
 
 https://gist.github.com/evanwill/0207876c3243bbb6863e65ec5dc3f058
 
