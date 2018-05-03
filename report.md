@@ -2,7 +2,12 @@
 `[30-Apr] -> [06-May]`
 -------------------------------------------------------------------------------
 
-`(next week)`
+### `[30-Apr]` What will I do this week?
+
+- Ask and search about some parts of the paper
+- Understand and execute Package Generation of Céu-Maker
+
+### `[06-May]` What did I do last week?
 
 -------------------------------------------------------------------------------
 `[23-Apr] -> [29-Apr]`
@@ -43,5 +48,6 @@
 - Be proactive! Suggest and discuss tasks with mentor
 
 ### `[30-Apr]` What did I do last week?
+    - Everything expected, but the paper needs more work. There are some parts that I should search and ask about. 
 
 `(1-2 small paragraphs for each of the planned tasks)`
