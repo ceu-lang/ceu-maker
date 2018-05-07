@@ -1,4 +1,13 @@
 -------------------------------------------------------------------------------
+`[07-May] -> [13-May]`
+-------------------------------------------------------------------------------
+### `[07-May]` What will I do this week?
+- Continue the study of Package Generation of Céu-Maker
+- Search for Arduino projects to compose the project's set of examples
+
+### `[13-May]` What did I do last week?
+
+-------------------------------------------------------------------------------
 `[30-Apr] -> [06-May]`
 -------------------------------------------------------------------------------
 
@@ -8,7 +17,8 @@
 - Understand and execute Package Generation of Céu-Maker
 
 ### `[06-May]` What did I do last week?
-
+- Deeper study of the paper and the features of Céu
+- I found difficulties to reproduce the Céu-Maker package generation
 -------------------------------------------------------------------------------
 `[23-Apr] -> [29-Apr]`
 -------------------------------------------------------------------------------
