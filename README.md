@@ -1,6 +1,6 @@
-# Céu-Maker
+# Cï¿½u-Maker
 
-Céu-Maker is a programming environment that integrates `ceu-arduino` and
+Cï¿½u-Maker is a programming environment that integrates `ceu-arduino` and
 `pico-ceu` in a single package for Windows.
 
 ## Installation
@@ -14,34 +14,34 @@ Céu-Maker is a programming environment that integrates `ceu-arduino` and
 
 ### Testing
 
-- pico-Céu
+- pico-Cï¿½u
     - Open the folder `samples/pico-ceu/`.
-    - Drag & Drop the file `all.ceu` into the icon `pico-Céu` (`bin/` folder).
+    - Drag & Drop the file `all.ceu` into the icon `pico-Cï¿½u` (`bin/` folder).
     - Observe the application behavior.
-- Céu-Arduino
+- Cï¿½u-Arduino
     - Plug the Arduino board you want to test.
     - Execute `ceu-maker/arduino-1.8.3/arduino.exe` and configure `Tools->Board` and `Tools->Port`.
     - Open the folder `samples/ceu-arduino/`.
-    - Drag & Drop the file `blink-01.ceu` into the icon `Céu-Arduino` (`bin/` folder).
+    - Drag & Drop the file `blink-01.ceu` into the icon `Cï¿½u-Arduino` (`bin/` folder).
     - Observe the application behavior.
 - Both
     - Open the folder `samples/both/`.
-    - Drag & Drop the same file `serial.ceu` into the icon `pico-Céu` (`bin/` folder) and then into the icon `Céu-Arduino` (`bin/` folder).
+    - Drag & Drop the same file `serial.ceu` into the icon `pico-Cï¿½u` (`bin/` folder) and then into the icon `Cï¿½u-Arduino` (`bin/` folder).
     - Observe the application behavior.
 
 -------------------------------------------------------------------------------
 
 ## Package Generation (for developers only)
 
-Céu-Maker depends on
-    [Céu](https://github.com/fsantanna/ceu),
-    [Céu-Arduino](https://github.com/fsantanna/ceu-arduino),
-    [Céu-SDL](https://github.com/fsantanna/ceu-sdl), and
-    [pico-Céu](https://github.com/fsantanna/pico-ceu).
+Cï¿½u-Maker depends on
+    [Cï¿½u](https://github.com/fsantanna/ceu),
+    [Cï¿½u-Arduino](https://github.com/fsantanna/ceu-arduino),
+    [Cï¿½u-SDL](https://github.com/fsantanna/ceu-sdl), and
+    [pico-Cï¿½u](https://github.com/fsantanna/pico-ceu).
 
-To generate a new version of Céu-Maker, use the instructions as follows.
+To generate a new version of Cï¿½u-Maker, use the instructions as follows.
 
-### Collect all relevant files to Céu-Maker
+### Collect all relevant files to Cï¿½u-Maker
 
 Clone the source repositories:
 
@@ -52,7 +52,7 @@ $ git clone https://github.com/fsantanna/ceu-sdl
 $ git clone https://github.com/fsantanna/pico-ceu
 ```
 
-Checkout the target version for each of the source repositories, e.g.:
+Checkout the target version for each of the source repositories, except the CÃ©u one (use the HEAD commit), e.g.:
 
 ```
 $ cd ceu/
@@ -67,15 +67,11 @@ Edit `Makefile.dirs` to point to the source repositories:
 $ vi Makefile.dirs
 ```
 
-Run `make` to copy the files from the source repositories to `ceu-maker/`:
+Run `make` using Git Bash to copy the files from the source repositories to `ceu-maker/`:
 
 ```
-$ make
+$ ceu-maker/mingw/bin/make.exe
 ```
-
-If the command `make` does not exist, follow the instructions in the link below:
-
-https://gist.github.com/evanwill/0207876c3243bbb6863e65ec5dc3f058
 
 ### Testing
 
@@ -101,7 +97,7 @@ https://www.win-rar.com
                 - Write in the text area `Source file name`.
                     - `ceu-maker\bin\`
                 - Write in the text area `Shortcut name`.
-                    - `Céu-Maker`
+                    - `Cï¿½u-Maker`
                 - Write in the text area `Shortcut icon`.
                     - `ceu-maker\cib_192.ico`
                 - Click on the button `OK`.
