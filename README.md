@@ -1,6 +1,6 @@
-# C�u-Maker
+# Céu-Maker
 
-C�u-Maker is a programming environment that integrates `ceu-arduino` and
+Céu-Maker is a programming environment that integrates `ceu-arduino` and
 `pico-ceu` in a single package for Windows.
 
 ## Installation
@@ -26,18 +26,18 @@ C�u-Maker is a programming environment that integrates `ceu-arduino` and
     - Observe the application behavior.
 - Both
     - Open the folder `samples/both/`.
-    - Drag & Drop the same file `serial.ceu` into the icon `pico-C�u` (`bin/` folder) and then into the icon `C�u-Arduino` (`bin/` folder).
+    - Drag & Drop the same file `serial.ceu` into the icon `pico-Céu` (`bin/` folder) and then into the icon `Céu-Arduino` (`bin/` folder).
     - Observe the application behavior.
 
 -------------------------------------------------------------------------------
 
 ## Package Generation (for developers only)
 
-C�u-Maker depends on
-    [C�u](https://github.com/fsantanna/ceu),
-    [C�u-Arduino](https://github.com/fsantanna/ceu-arduino),
-    [C�u-SDL](https://github.com/fsantanna/ceu-sdl), and
-    [pico-C�u](https://github.com/fsantanna/pico-ceu).
+Céu-Maker depends on
+    [Céu](https://github.com/fsantanna/ceu),
+    [Céu-Arduino](https://github.com/fsantanna/ceu-arduino),
+    [Céu-SDL](https://github.com/fsantanna/ceu-sdl), and
+    [pico-Céu](https://github.com/fsantanna/pico-ceu).
 
 To generate a new version of C�u-Maker, use the instructions as follows.
 
@@ -79,33 +79,13 @@ Follow the `Installation->Testing` instructions above.
 
 ### Generate Package
 
-We use WinRAR to generate a self-extracting executable:
+- To generate a self-extracting executable, run in Windows Command Prompt the following line of code:
+```
+"WinRAR/WinRAR64/WinRAR.exe" a -zWinRAR/setup_comment.txt -r -sfx -iiconceu-maker/cib_192.ico ceu-maker.exe "ceu-maker/*"
+```
 
-https://www.win-rar.com
+Note that we use [WinRAR](https://www.win-rar.com) to generate a self-extracting executable. The above command only works for 64-bit machines. If the machine used is 32-bit, download the corresponding WinRAR version and modify the command to use the new WinRAR executable.
 
-- Open the Windows Explorer.
-- Right click on the subdirectory `ceu-maker/` (inside the `ceu-maker` repository).
-    - Click on `Add to archive...`.
-- Check the option `Create SFX archive`.
-- Click on the tab `Advanced`.
-    - Click on the button `SFX options...`.
-        - Click on the tab `Setup`.
-            - Write in the text area `Run after extraction`:
-                - `ceu-maker\start.bat`
-        - Click on the tab `Advanced`.
-            - Click on the button `Add shortcut...`.
-                - Write in the text area `Source file name`.
-                    - `ceu-maker\bin\`
-                - Write in the text area `Shortcut name`.
-                    - `C�u-Maker`
-                - Write in the text area `Shortcut icon`.
-                    - `ceu-maker\cib_192.ico`
-                - Click on the button `OK`.
-        - Click on the tab `Text and icon`.
-            - Click on the button `Browse` in `Load SFX icon from the file`
-                - Choose path `icos/cib_192.ico`.
-        - Click on the button `OK`.
-- Click on the button `OK`.
 - Move `ceu-maker.exe` to `releases/ceu-maker-vX.XX-XXX.exe`
 - Add release to GitHub:
     - https://github.com/fsantanna/ceu-maker/releases/new
