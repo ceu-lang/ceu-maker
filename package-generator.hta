@@ -11,7 +11,8 @@
 
 <script language="VBScript">
     Dim Dirs
-    Dim ReadDirs, i
+    Dim Vars
+    Dim ReadDirs, ReadVars, i
 
     Sub Window_onLoad
         //resize window
@@ -25,7 +26,7 @@
         Dim strLine
         do while not objFileToRead.AtEndOfStream
             strLine = objFileToRead.ReadLine()
-            ReadDirs(i) = Mid(strLine, instr(strLine,"=")+1, Len(strLine))
+            ReadDirs(i) = Mid(strLine, instr(strLine,"=")+2, Len(strLine))
             i = i + 1
         loop
         objFileToRead.Close
@@ -35,12 +36,27 @@
         ceuarduino.value = ReadDirs(1) 
         ceusdl.value     = ReadDirs(2) 
         picoceu.value    = ReadDirs(3) 
+
+        ReadVars = Array("","","")
+        i = 0
+        Set objFileToRead = CreateObject("Scripting.FileSystemObject").OpenTextFile("Makefile.vars", 1)
+        do while not objFileToRead.AtEndOfStream
+            strLine = objFileToRead.ReadLine()
+            ReadVars(i) = Mid(strLine, instr(strLine,"=")+2, Len(strLine))
+            i = i + 1
+        loop
+        objFileToRead.Close
+        Set objFileToRead = Nothing
+
+        gitbash.value = ReadVars(0) 
+        winrar.value  = ReadVars(1) 
+        Version.value = ReadVars(2)       
     End Sub 
 
     Sub TestSub
         set sh = CreateObject("Wscript.shell")
         
-        //atualizou o Makefile.dirs
+        //atualizar o Makefile.dirs
         Dirs = "CEU_DIR = " & ceu.value & vbCrLf & "CEU_ARDUINO_DIR = " & ceuarduino.value & vbCrLf & "CEU_SDL_DIR = " & ceusdl.value & vbCrLf & "CEU_PICO_DIR = " & picoceu.value
 
         Const ForWrite = 2
@@ -49,8 +65,16 @@
         objTextFile.WriteLine(Dirs)
         objTextFile.Close
 
-        //execute make using gitbash, generate package and close cmd
-        sh.Run "cmd /k " & """" & """" & gitbash.value & """" & " -c ceu-maker/mingw/bin/make.exe" & "&&" & """" & winrar.value & """" & " a -zWinRAR/setup_comment.txt -r -sfx -iiconceu-maker/cib_192.ico releases/ceu-maker-v" & version.value & ".exe ceu-maker/*" & """" & "&& exit"
+        //atualizar o Makefile.vars
+        Vars = "GITBASH_EXE = " & gitbash.value & vbCrLf & "WINRAR_EXE = " & winrar.value & vbCrLf & "CEU_MAKER_VERSION = " & version.value
+
+        Set objFSO = CreateObject("Scripting.FileSystemObject")
+        Set objTextFile = objFSO.OpenTextFile("Makefile.vars", ForWrite, True)
+        objTextFile.WriteLine(Vars)
+        objTextFile.Close
+
+        //execute make using gitbash and close cmd
+        sh.Run "cmd /k " & """" & """" & gitbash.value & """" & " -c ceu-maker/mingw/bin/make.exe" & """" & "&& exit"
     End Sub
 </script>
 

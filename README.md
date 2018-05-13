@@ -67,6 +67,15 @@ Edit `Makefile.dirs` to point to the source repositories:
 $ vi Makefile.dirs
 ```
 
+Edit `Makefile.vars` to define the version of Céu-Maker generated package, to point to the WinRAR installation folder and, if you 
+use the *package-generator.hta*, to the Git Bash folder:
+
+```
+$ vi Makefile.vars
+```
+
+Note that we use [WinRAR](https://www.win-rar.com) to generate a self-extracting executable. This repository already contains a 64-bit version of WinRAR machines. If the machine used is 32-bit, download the corresponding WinRAR version and modify the *Makefile.vars*.
+
 Run `make` using Git Bash to copy the files from the source repositories to `ceu-maker/`:
 
 ```
@@ -77,15 +86,6 @@ $ ceu-maker/mingw/bin/make.exe
 
 Follow the `Installation->Testing` instructions above.
 
-### Generate Package
-
-- To generate a self-extracting executable, run in Windows Command Prompt the following line of code:
-```
-"WinRAR/WinRAR64/WinRAR.exe" a -zWinRAR/setup_comment.txt -r -sfx -iiconceu-maker/cib_192.ico ceu-maker.exe "ceu-maker/*"
-```
-
-Note that we use [WinRAR](https://www.win-rar.com) to generate a self-extracting executable. The above command only works for 64-bit machines. If the machine used is 32-bit, download the corresponding WinRAR version and modify the command to use the new WinRAR executable.
-
-- Move `ceu-maker.exe` to `releases/ceu-maker-vX.XX-XXX.exe`
+### Add release to GitHub
 - Add release to GitHub:
     - https://github.com/fsantanna/ceu-maker/releases/new
