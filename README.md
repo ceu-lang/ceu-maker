@@ -14,15 +14,15 @@ Céu-Maker is a programming environment that integrates `ceu-arduino` and
 
 ### Testing
 
-- pico-C�u
+- pico-Céu
     - Open the folder `samples/pico-ceu/`.
-    - Drag & Drop the file `all.ceu` into the icon `pico-C�u` (`bin/` folder).
+    - Drag & Drop the file `all.ceu` into the icon `pico-Céu` (`bin/` folder).
     - Observe the application behavior.
-- C�u-Arduino
+- Céu-Arduino
     - Plug the Arduino board you want to test.
     - Execute `ceu-maker/arduino-1.8.3/arduino.exe` and configure `Tools->Board` and `Tools->Port`.
     - Open the folder `samples/ceu-arduino/`.
-    - Drag & Drop the file `blink-01.ceu` into the icon `C�u-Arduino` (`bin/` folder).
+    - Drag & Drop the file `blink-01.ceu` into the icon `Céu-Arduino` (`bin/` folder).
     - Observe the application behavior.
 - Both
     - Open the folder `samples/both/`.
@@ -39,9 +39,9 @@ Céu-Maker depends on
     [Céu-SDL](https://github.com/fsantanna/ceu-sdl), and
     [pico-Céu](https://github.com/fsantanna/pico-ceu).
 
-To generate a new version of C�u-Maker, use the instructions as follows.
+To generate a new version of Céu-Maker, use the instructions as follows or use the GUI package generator
 
-### Collect all relevant files to C�u-Maker
+### Collect all relevant files to Céu-Maker
 
 Clone the source repositories:
 
