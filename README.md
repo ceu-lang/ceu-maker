@@ -39,7 +39,7 @@ Céu-Maker depends on
     [Céu-SDL](https://github.com/fsantanna/ceu-sdl), and
     [pico-Céu](https://github.com/fsantanna/pico-ceu).
 
-To generate a new version of Céu-Maker, use the instructions as follows.
+To generate a new version of Céu-Maker, use the instructions as follows or use the GUI package generator
 
 ### Collect all relevant files to Céu-Maker
 
@@ -61,19 +61,13 @@ $ git checkout v0.30
 
 This step can be skipped if you want to use the `master` branches.
 
-Edit `Makefile.dirs` to point to the source repositories:
+Edit `Makefile.conf` to point to the source repositories and to the WinRAR installation folder:
 
 ```
-$ vi Makefile.dirs
+$ vi Makefile.conf
 ```
 
-Edit `Makefile.vars` to point to the WinRAR installation folder
-
-```
-$ vi Makefile.vars
-```
-
-Note that we use [WinRAR](https://www.win-rar.com) to generate a self-extracting executable. This repository already contains a 64-bit version of WinRAR machines. If the machine used is 32-bit, download the corresponding WinRAR version and modify the *Makefile.vars*.
+Note that we use [WinRAR](https://www.win-rar.com) to generate a self-extracting executable. This repository already contains a 64-bit version of WinRAR. If the machine used is 32-bit, download the corresponding WinRAR version and modify the *Makefile.conf*.
 
 Run `make` using Git Bash to copy the files from the source repositories to `ceu-maker/`:
 
@@ -86,5 +80,6 @@ $ ceu-maker/mingw/bin/make.exe
 Follow the `Installation->Testing` instructions above.
 
 ### Add release to GitHub
+- Move `releases/ceu-maker.exe` to `releases/ceu-maker-vX.XX-XXX.exe`
 - Add release to GitHub:
     - https://github.com/fsantanna/ceu-maker/releases/new
