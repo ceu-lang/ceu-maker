@@ -42,6 +42,6 @@ pico:
 	cp $(CEU_PICO_DIR)/pico.ceu                   ceu-maker/run/ceu/
 
 winrar:
-	$(WINRAR_EXE) a -zWinRAR/setup_comment.txt -r -sfx -iiconceu-maker/cib_192.ico releases/ceu-maker-v$(CEU_MAKER_VERSION).exe "ceu-maker/*"
+	$(WINRAR_EXE) a -zWinRAR/setup_comment.txt -r -sfx -iiconceu-maker/cib_192.ico releases/ceu-maker.exe "ceu-maker/*"
 
 .PHONY: ceu arduino sdl pico winrar

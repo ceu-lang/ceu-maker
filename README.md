@@ -39,7 +39,7 @@ Céu-Maker depends on
     [Céu-SDL](https://github.com/fsantanna/ceu-sdl), and
     [pico-Céu](https://github.com/fsantanna/pico-ceu).
 
-To generate a new version of Céu-Maker, use the instructions as follows or use the GUI package generator
+To generate a new version of Céu-Maker, use the instructions as follows.
 
 ### Collect all relevant files to Céu-Maker
 
@@ -67,8 +67,7 @@ Edit `Makefile.dirs` to point to the source repositories:
 $ vi Makefile.dirs
 ```
 
-Edit `Makefile.vars` to define the version of Céu-Maker generated package, to point to the WinRAR installation folder and, if you 
-use the *package-generator.hta*, to the Git Bash folder:
+Edit `Makefile.vars` to point to the WinRAR installation folder
 
 ```
 $ vi Makefile.vars
