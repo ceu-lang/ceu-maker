@@ -1,6 +1,8 @@
 @echo off
 
 set CEU_ISR=false
+
+SelectDevice.exe
 rem set ARD_BOARD="--board arduino:avr:uno"
 rem set ARD_PORT="--port COM3"
 
