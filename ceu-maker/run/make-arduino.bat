@@ -6,16 +6,18 @@ set CEU_ISR=false
 
 for /f %%a in ('%~dp0/SelectDevice.exe') do set "returnvalue=%%a"
 
-set ARD_BOARD = ""
-set ARD_PORT  = ""
+set "ARD_BOARD="
+set "ARD_PORT="
 
-for /f "tokens=1,2,3 delims=, " %%a in ("%returnvalue%") do (
-   set "ARD_BOARD=--board arduino:avr:%%a%%c"
-   set "ARD_PORT=--port %%b"
+if NOT "%returnvalue%" == "ide" (
+    for /f "tokens=1,2,3 delims=, " %%a in ("%returnvalue%") do (
+        set "ARD_BOARD=--board arduino:avr:%%a%%c"
+        set "ARD_PORT=--port %%b"
+    )
+
+    echo !ARD_BOARD!
+    echo !ARD_PORT!
 )
-
-echo !ARD_BOARD!
-echo !ARD_PORT!
 
 set CEU_SRC=%1
 if exist %CEU_SRC%\main.ceu set CEU_SRC=%CEU_SRC%\main.ceu
