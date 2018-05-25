@@ -2,4 +2,3 @@ CEU_DIR         = $(error set absolute path to "<ceu>" repository)
 CEU_ARDUINO_DIR = $(error set absolute path to "<ceu-arduino>" repository)
 CEU_SDL_DIR     = $(error set absolute path to "<ceu-sdl>" repository)
 CEU_PICO_DIR    = $(error set absolute path to "<pico-ceu>" repository)
-WINRAR_EXE      = WinRAR/WinRAR-x64.exe

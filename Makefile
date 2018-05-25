@@ -1,4 +1,4 @@
-include Makefile.conf
+include Makefile.dirs
 
 LUA = ${CURDIR}/ceu-maker/run/lua53.exe
 
@@ -42,6 +42,6 @@ pico:
 
 winrar:
 	mkdir -p releases
-	$(WINRAR_EXE) a -zWinRAR/setup_comment.txt -r -sfx -iiconceu-maker/cib_192.ico releases/ceu-maker.exe "ceu-maker/*"
+	WinRAR/WinRAR.exe a -zWinRAR/setup_comment.txt -r -sfx -iiconceu-maker/cib_192.ico releases/ceu-maker.exe "ceu-maker/*"
 
 .PHONY: ceu arduino sdl pico winrar
