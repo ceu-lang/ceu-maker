@@ -80,10 +80,6 @@ Run `make` using Git Bash to copy the files from the source repositories to `ceu
 $ ceu-maker/mingw/bin/make.exe
 ```
 
-If the command `make` does not exist, follow the instructions in the link below:
-
-https://gist.github.com/evanwill/0207876c3243bbb6863e65ec5dc3f058
-
 ### Testing
 
 Follow the `Installation->Testing` instructions above.
