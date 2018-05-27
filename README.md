@@ -1,6 +1,6 @@
-# CÃ©u-Maker
+# Céu-Maker
 
-CÃ©u-Maker is a programming environment that integrates `ceu-arduino` and
+Céu-Maker is a programming environment that integrates `ceu-arduino` and
 `pico-ceu` in a single package for Windows.
 
 ## Installation
@@ -14,34 +14,34 @@ CÃ©u-Maker is a programming environment that integrates `ceu-arduino` and
 
 ### Testing
 
-- pico-CÃ©u
+- pico-Céu
     - Open the folder `samples/pico-ceu/`.
-    - Drag & Drop the file `all.ceu` into the icon `pico-CÃ©u` (`bin/` folder).
+    - Drag & Drop the file `all.ceu` into the icon `pico-Céu` (`bin/` folder).
     - Observe the application behavior.
-- CÃ©u-Arduino
+- Céu-Arduino
     - Plug the Arduino board you want to test.
     - Execute `ceu-maker/arduino-1.8.3/arduino.exe` and configure `Tools->Board` and `Tools->Port`.
     - Open the folder `samples/ceu-arduino/`.
-    - Drag & Drop the file `blink-01.ceu` into the icon `CÃ©u-Arduino` (`bin/` folder).
+    - Drag & Drop the file `blink-01.ceu` into the icon `Céu-Arduino` (`bin/` folder).
     - Observe the application behavior.
 - Both
     - Open the folder `samples/both/`.
-    - Drag & Drop the same file `serial.ceu` into the icon `pico-CÃ©u` (`bin/` folder) and then into the icon `CÃ©u-Arduino` (`bin/` folder).
+    - Drag & Drop the same file `serial.ceu` into the icon `pico-Céu` (`bin/` folder) and then into the icon `Céu-Arduino` (`bin/` folder).
     - Observe the application behavior.
 
 -------------------------------------------------------------------------------
 
 ## Package Generation (for developers only)
 
-CÃ©u-Maker depends on
-    [CÃ©u](https://github.com/fsantanna/ceu),
-    [CÃ©u-Arduino](https://github.com/fsantanna/ceu-arduino),
-    [CÃ©u-SDL](https://github.com/fsantanna/ceu-sdl), and
-    [pico-CÃ©u](https://github.com/fsantanna/pico-ceu).
+Céu-Maker depends on
+    [Céu](https://github.com/fsantanna/ceu),
+    [Céu-Arduino](https://github.com/fsantanna/ceu-arduino),
+    [Céu-SDL](https://github.com/fsantanna/ceu-sdl), and
+    [pico-Céu](https://github.com/fsantanna/pico-ceu).
 
-To generate a new version of CÃ©u-Maker, use the instructions as follows or use the GUI package generator
+To generate a new version of Céu-Maker, use the instructions as follows:
 
-### Collect all relevant files to CÃ©u-Maker
+### Collect all relevant files to Céu-Maker
 
 #### Prepare the source repositories
 
@@ -54,11 +54,11 @@ $ git clone https://github.com/fsantanna/ceu-sdl
 $ git clone https://github.com/fsantanna/pico-ceu
 ```
 
-Checkout the target version for each of the source repositories, except the Céu one (use the HEAD commit), e.g.:
+Checkout the target version for each of the source repositories, except the Céu one (use commit [075dcc5](https://github.com/fsantanna/ceu/commit/075dcc563b6192a0b1e75f7cc9997b5f5b04fafd), e.g.:
 
 ```
 $ cd ceu/
-$ git checkout v0.30
+$ git checkout 075dcc563b6192a0b1e75f7cc9997b5f5b04fafd
 $ cd ../ceu-arduino
 $ git checkout v0.30
 $ ... # same for the other repositories
@@ -68,25 +68,17 @@ $ ... # same for the other repositories
 
 #### Copy to Céu-Maker
 
-Edit `Makefile.conf` to point to the source repositories and to the WinRAR installation folder:
+Edit `Makefile.dirs` to point to the source repositories:
 
 ```
-$ vi Makefile.conf
+$ vi Makefile.dirs
 ```
-
-Note that we use [WinRAR](https://www.win-rar.com) to generate a self-extracting executable.
-This repository already contains a 64-bit version of WinRAR.
-If the machine used is 32-bit, download the corresponding WinRAR version and modify the *Makefile.conf*.
 
 Run `make` using Git Bash to copy the files from the source repositories to `ceu-maker/`:
 
 ```
 $ ceu-maker/mingw/bin/make.exe
 ```
-
-If the command `make` does not exist, follow the instructions in the link below:
-
-https://gist.github.com/evanwill/0207876c3243bbb6863e65ec5dc3f058
 
 ### Testing
 
