@@ -23,7 +23,7 @@ arduino:
 
 	rm -Rf ceu-maker/samples/ceu-arduino/
 	mkdir -p ceu-maker/samples/ceu-arduino/ 
-	cp -Rf $(CEU_ARDUINO_DIR)/samples/*            ceu-maker/samples/ceu-arduino/
+	cp -Rf $(CEU_ARDUINO_DIR)/samples/*           ceu-maker/samples/ceu-arduino/
 	cp -Rf $(CEU_ARDUINO_DIR)/include/arduino/    ceu-maker/run/ceu/include/
 	rm -Rf ceu-maker/run/ceu/env/arduino/
 	mkdir ceu-maker/run/ceu/env/arduino/
@@ -36,7 +36,8 @@ pico:
 	cp $(CEU_PICO_DIR)/docs/manual/v0.30/pico-ceu-v0.30.pdf ceu-maker/docs/
 	rm -Rf ceu-maker/samples/pico-ceu/
 	mkdir -p ceu-maker/samples/pico-ceu/
-	cp -Rf $(CEU_PICO_DIR)/samples/*               ceu-maker/samples/pico-ceu/
+	cp -Rf $(CEU_PICO_DIR)/samples/*              ceu-maker/samples/pico-ceu/
+	cp -Rf $(CEU_PICO_DIR)/tiny.ttf               ceu-maker/samples/pico-ceu/
 	cp -Rf $(CEU_PICO_DIR)/include/pico/          ceu-maker/run/ceu/include/
 	cp $(CEU_PICO_DIR)/pico.ceu                   ceu-maker/run/ceu/
 
