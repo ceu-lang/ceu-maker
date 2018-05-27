@@ -54,12 +54,10 @@ $ git clone https://github.com/fsantanna/ceu-sdl
 $ git clone https://github.com/fsantanna/pico-ceu
 ```
 
-Checkout the target version for each of the source repositories, except the Céu one (use commit [075dcc5](https://github.com/fsantanna/ceu/commit/075dcc563b6192a0b1e75f7cc9997b5f5b04fafd), e.g.:
+Checkout the target version for each of the source repositories, e.g.:
 
 ```
 $ cd ceu/
-$ git checkout 075dcc563b6192a0b1e75f7cc9997b5f5b04fafd
-$ cd ../ceu-arduino
 $ git checkout v0.30
 $ ... # same for the other repositories
 ```
