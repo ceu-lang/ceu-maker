@@ -37,7 +37,6 @@ pico:
 	rm -Rf ceu-maker/samples/pico-ceu/
 	mkdir -p ceu-maker/samples/pico-ceu/
 	cp -Rf $(CEU_PICO_DIR)/samples/*              ceu-maker/samples/pico-ceu/
-	cp -Rf $(CEU_PICO_DIR)/tiny.ttf               ceu-maker/samples/pico-ceu/
 	cp -Rf $(CEU_PICO_DIR)/include/pico/          ceu-maker/run/ceu/include/
 	cp $(CEU_PICO_DIR)/pico.ceu                   ceu-maker/run/ceu/
 
