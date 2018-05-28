@@ -6,8 +6,8 @@ all: clean dirs repos ceu arduino sdl pico winrar
 clean:
 	rm -Rf ceu-maker/docs/
 	rm -Rf ceu-maker/run/ceu/
-	rm -Rf ceu-maker/samples/ceu-arduino/
-	rm -Rf ceu-maker/samples/pico-ceu/
+	rm -Rf ceu-maker/examples/ceu-arduino/
+	rm -Rf ceu-maker/examples/pico-ceu/
 	rm -Rf ceu-maker/dist/
 
 dirs:
@@ -17,9 +17,9 @@ dirs:
 	mkdir -p ceu-maker/run/ceu/include/
 	mkdir -p ceu-maker/run/ceu/env/
 	mkdir -p ceu-maker/run/ceu/env/arduino/
-	mkdir -p ceu-maker/samples/
-	mkdir -p ceu-maker/samples/ceu-arduino/ 
-	mkdir -p ceu-maker/samples/pico-ceu/
+	mkdir -p ceu-maker/examples/
+	mkdir -p ceu-maker/examples/ceu-arduino/
+	mkdir -p ceu-maker/examples/pico-ceu/
 
 repos:
 	-git clone https://github.com/ceu-lang/ceu         repos/ceu
@@ -42,7 +42,7 @@ ceu:
 arduino:
 	cp repos/ceu-arduino/docs/manual/v0.20/ceu-arduino-v0.20.pdf ceu-maker/docs/
 	#cp repos/ceu-arduino/docs/manual/v0.30/ceu-arduino-v0.30.pdf ceu-maker/docs/
-	cp -Rf repos/ceu-arduino/samples/*           ceu-maker/samples/ceu-arduino/
+	cp -Rf repos/ceu-arduino/examples/*          ceu-maker/examples/ceu-arduino/
 	cp -Rf repos/ceu-arduino/include/arduino/    ceu-maker/run/ceu/include/
 	cp -Rf repos/ceu-arduino/env/                ceu-maker/run/ceu/env/arduino/
 
@@ -51,7 +51,7 @@ sdl:
 
 pico:
 	cp repos/pico-ceu/docs/manual/v0.30/pico-ceu-v0.30.pdf ceu-maker/docs/
-	cp -Rf repos/pico-ceu/samples/*              ceu-maker/samples/pico-ceu/
+	cp -Rf repos/pico-ceu/examples/*             ceu-maker/examples/pico-ceu/
 	cp -Rf repos/pico-ceu/include/pico/          ceu-maker/run/ceu/include/
 	cp repos/pico-ceu/pico.ceu                   ceu-maker/run/ceu/
 
