@@ -1,9 +1,10 @@
+repos/
+releases/
+dist/
 ceu-maker/docs/
 ceu-maker/run/ceu/
 ceu-maker/run/ceu.lua
 ceu-maker/samples/ceu-arduino/
 ceu-maker/samples/pico-ceu/
-releases/
-dist/
 *~
 *.swp

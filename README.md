@@ -31,7 +31,7 @@ Céu-Maker is a programming environment that integrates `ceu-arduino` and
 
 -------------------------------------------------------------------------------
 
-## Package Generation (for developers only)
+## Package Generation (for developers only, windows only)
 
 Céu-Maker depends on
     [Céu](https://github.com/fsantanna/ceu),
@@ -39,50 +39,18 @@ Céu-Maker depends on
     [Céu-SDL](https://github.com/fsantanna/ceu-sdl), and
     [pico-Céu](https://github.com/fsantanna/pico-ceu).
 
-To generate a new version of Céu-Maker, use the instructions as follows:
-
-### Collect all relevant files to Céu-Maker
-
-#### Prepare the source repositories
-
-First, clone the source repositories:
+Open *Git Bash*, change to the `ceu-maker/` repository directory, and run `make`:
 
 ```
-$ git clone https://github.com/fsantanna/ceu
-$ git clone https://github.com/fsantanna/ceu-arduino
-$ git clone https://github.com/fsantanna/ceu-sdl
-$ git clone https://github.com/fsantanna/pico-ceu
-```
-
-Checkout the target version for each of the source repositories, e.g.:
-
-```
-$ cd ceu/
-$ git checkout v0.30
-$ ... # same for the other repositories
-```
-
-(This step can be skipped if you want to use the `master` branches.)
-
-#### Copy to Céu-Maker
-
-Edit `Makefile.dirs` to point to the source repositories:
-
-```
-$ vi Makefile.dirs
-```
-
-Run `make` using Git Bash to copy the files from the source repositories to `ceu-maker/`:
-
-```
+$ cd <ceu-maker-repo>/
 $ ceu-maker/mingw/bin/make.exe
 ```
 
-### Testing
+This will download all dependencies and generate a self-extracting package
+`releases/ceu-maker.exe` with the Céu-Maker.
 
-Follow the `Installation->Testing` instructions above.
+To release a new version, rename the file and add it to *GitHub*:
 
-### Add release to GitHub
-- Move `releases/ceu-maker.exe` to `releases/ceu-maker-vX.XX-XXX.exe`
+- Rename `releases/ceu-maker.exe` to `releases/ceu-maker-vX.XX-XXX.exe`
 - Add release to GitHub:
     - https://github.com/fsantanna/ceu-maker/releases/new
