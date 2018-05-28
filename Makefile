@@ -22,10 +22,10 @@ dirs:
 	mkdir -p ceu-maker/samples/pico-ceu/
 
 repos:
-	-git clone https://github.com/fsantanna/ceu         repos/ceu
-	-git clone https://github.com/fsantanna/ceu-arduino repos/ceu-arduino
-	-git clone https://github.com/fsantanna/ceu-sdl     repos/ceu-sdl
-	-git clone https://github.com/fsantanna/pico-ceu    repos/pico-ceu
+	-git clone https://github.com/ceu-lang/ceu         repos/ceu
+	-git clone https://github.com/ceu-lang/ceu-arduino repos/ceu-arduino
+	-git clone https://github.com/ceu-lang/ceu-sdl     repos/ceu-sdl
+	-git clone https://github.com/ceu-lang/pico-ceu    repos/pico-ceu
 	cd repos/ceu/         && git pull && git checkout $(BRANCH)
 	cd repos/ceu-arduino/ && git pull && git checkout $(BRANCH)
 	cd repos/ceu-sdl/     && git pull && git checkout $(BRANCH)

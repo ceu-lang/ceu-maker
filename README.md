@@ -6,7 +6,7 @@ Céu-Maker is a programming environment that integrates `ceu-arduino` and
 ## Installation
 
 - Download the latest release from GitHub:
-    - https://github.com/fsantanna/ceu-maker/releases
+    - https://github.com/ceu-lang/ceu-maker/releases
 - Execute the downloaded file and choose the appropriate destination.
 - After the installation, two windows will appear:
     - The folder `bin/`.
@@ -34,10 +34,10 @@ Céu-Maker is a programming environment that integrates `ceu-arduino` and
 ## Package Generation (for developers only, windows only)
 
 Céu-Maker depends on
-    [Céu](https://github.com/fsantanna/ceu),
-    [Céu-Arduino](https://github.com/fsantanna/ceu-arduino),
-    [Céu-SDL](https://github.com/fsantanna/ceu-sdl), and
-    [pico-Céu](https://github.com/fsantanna/pico-ceu).
+    [Céu](https://github.com/ceu-lang/ceu),
+    [Céu-Arduino](https://github.com/ceu-lang/ceu-arduino),
+    [Céu-SDL](https://github.com/ceu-lang/ceu-sdl), and
+    [pico-Céu](https://github.com/ceu-lang/pico-ceu).
 
 Open *Git Bash*, change to the `ceu-maker/` repository directory, and run `make`:
 
@@ -53,4 +53,4 @@ To release a new version, rename the file and add it to *GitHub*:
 
 - Rename `releases/ceu-maker.exe` to `releases/ceu-maker-vX.XX-XXX.exe`
 - Add release to GitHub:
-    - https://github.com/fsantanna/ceu-maker/releases/new
+    - https://github.com/ceu-lang/ceu-maker/releases/new
