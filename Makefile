@@ -1,4 +1,4 @@
-LUA = ${CURDIR}/ceu-maker/run/lua53.exe
+LUA = ./ceu-maker/run/lua53.exe
 BRANCH = pre-v0.40
 
 all: clean dirs repos ceu arduino sdl pico winrar
