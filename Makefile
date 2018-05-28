@@ -30,7 +30,7 @@ repos:
 	cd repos/ceu-arduino/ && git pull && git checkout $(BRANCH)
 	cd repos/ceu-sdl/     && git pull && git checkout $(BRANCH)
 	cd repos/pico-ceu/    && git pull && git checkout $(BRANCH)
-	cd repos/ceu-arduino/libraries/ && make clone && make
+	cd repos/ceu-arduino/libraries/ && make clone
 
 ceu:
 	cp repos/ceu/env/*                           ceu-maker/run/ceu/env/
