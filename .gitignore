@@ -2,7 +2,7 @@ repos/
 releases/
 dist/
 ceu-maker/docs/
-ceu-maker/run/ceu/
+ceu-maker/repos/
 ceu-maker/run/ceu.lua
 ceu-maker/examples/ceu-arduino/
 ceu-maker/examples/pico-ceu/

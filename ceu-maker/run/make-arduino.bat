@@ -1,3 +1,3 @@
-rem @echo off
-..\mingw\bin\make -f Makefile CEU_DIR=CEU_SRC=../examples/ceu-arduino/blink-01.ceu
+@echo off
+..\mingw\bin\make -f ../repos/ceu-arduino/Makefile CEU_SRC=%1
 pause
