@@ -2,7 +2,7 @@
 
 setlocal EnableDelayedExpansion
 
-set CEU_ISR=false
+set CEU_ISR=static
 
 for /f %%a in ('%~dp0/SelectDevice.exe') do set "returnvalue=%%a"
 
