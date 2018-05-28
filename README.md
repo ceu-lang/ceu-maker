@@ -39,10 +39,11 @@ Céu-Maker depends on
     [Céu-SDL](https://github.com/ceu-lang/ceu-sdl), and
     [pico-Céu](https://github.com/ceu-lang/pico-ceu).
 
-Open *Git Bash*, change to the `ceu-maker/` repository directory, and run `make`:
+Open *Git Bash*, clone this repository, and run `make`:
 
 ```
-$ cd <ceu-maker-repo>/
+$ git clone https://github.com/ceu-lang/ceu-maker/
+$ cd ceu-maker/
 $ ceu-maker/mingw/bin/make.exe
 ```
 
