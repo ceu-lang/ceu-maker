@@ -59,10 +59,13 @@ sdl:
 	cp -Rf repos/ceu-sdl/include/*               ceu-maker/repos/pico-ceu/include/
 
 pico:
-	cp repos/pico-ceu/docs/manual/v0.30/pico-ceu-v0.30.pdf ceu-maker/docs/
+	cp     repos/pico-ceu/docs/manual/v0.30/pico-ceu-v0.30.pdf ceu-maker/docs/
+	cp     repos/pico-ceu/Makefile               ceu-maker/repos/pico-ceu/
+	cp     repos/pico-ceu/tiny.ttf               ceu-maker/repos/pico-ceu/
+	cp     repos/pico-ceu/pico.ceu               ceu-maker/repos/pico-ceu/
+	cp     ceu-maker/run/make-pico.conf          ceu-maker/repos/pico-ceu/Makefile.dirs
 	cp -Rf repos/pico-ceu/examples/*             ceu-maker/examples/pico-ceu/
 	cp -Rf repos/pico-ceu/include/*              ceu-maker/repos/pico-ceu/include/
-	cp repos/pico-ceu/pico.ceu                   ceu-maker/repos/pico-ceu/
 
 winrar:
 	WinRAR/WinRAR.exe a -zWinRAR/setup_comment.txt -r -sfx -iiconceu-maker/cib_192.ico releases/ceu-maker.exe "ceu-maker/*"
