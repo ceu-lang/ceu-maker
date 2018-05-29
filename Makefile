@@ -42,7 +42,7 @@ ceu:
 	cp -Rf repos/ceu/include/*                   ceu-maker/repos/ceu-arduino/include/
 	cp -Rf repos/ceu/include/*                   ceu-maker/repos/pico-ceu/include/
 	cp repos/ceu/docs/manual/v0.30/ceu-v0.30.pdf ceu-maker/docs/
-	cd repos/ceu/src/lua && $(LUA) pak.lua lua5.3
+	cd repos/ceu/src/lua && ../../../../$(LUA) pak.lua lua5.3
 	cp repos/ceu/src/lua/ceu                     ceu-maker/run/ceu.lua
 	
 arduino:
