@@ -68,6 +68,6 @@ pico:
 	cp -Rf repos/pico-ceu/include/*              ceu-maker/repos/pico-ceu/include/
 
 winrar:
-	WinRAR/WinRAR.exe a -zWinRAR/setup_comment.txt -r -sfx -iiconceu-maker/cib_192.ico releases/ceu-maker.exe "ceu-maker/*"
+	WinRAR/WinRAR.exe a -zWinRAR/setup_comment.txt -r -sfx -iiconceu-maker/cib_192.ico -iimgicos/iimg.bmp releases/ceu-maker.exe "ceu-maker/*"
 
 .PHONY: clean dirs repos ceu arduino sdl pico winrar

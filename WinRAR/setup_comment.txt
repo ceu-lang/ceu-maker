@@ -1,1 +1,10 @@
 Setup=ceu-maker/start.bat
+Title=Céu-Maker Setup
+Text
+{
+    <p>Setup will install Céu-Maker in the following folder. To install in a different folder, click Browse and select another folder. Click install to finish.</p>
+
+    <p>Céu-Maker is a programming environment that integrates ceu-arduino and pico-ceu in a single package for Windows.</p>
+ 
+    <p>After installation, drag and drop an example of the folder examples into the corresponding icon (inside the / bin folder).</p>
+}
