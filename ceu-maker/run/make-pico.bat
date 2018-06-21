@@ -2,7 +2,7 @@ rem @echo off
 
 cd %~dp0\..\repos\pico-ceu\
 
-set CEU_SRC=%1
+set CEU_SRC=%~1
 if exist %CEU_SRC%\main.ceu set CEU_SRC=%CEU_SRC%\main.ceu
 for %%A in ("%CEU_SRC%") do (
     set CEU_DIR=%%~dpA
