@@ -30,7 +30,7 @@
     
     emit WINDOW_SET_TITLE("Echo app");  // sets the window title
 
-    await Usart(3);
+    spawn Usart(3);
 
     loop do
         var[5] byte buffer;

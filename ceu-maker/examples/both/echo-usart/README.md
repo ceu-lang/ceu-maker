@@ -59,10 +59,10 @@ After checking that ```v==high``` the Arduino sends via serial port the string d
 #include "usart.ceu"
 #include "string.ceu"
 
-await Usart(3);
+spawn Usart(3);
 ```
 
-It starts by including ```usart.ceu``` and ```string.ceu``` that, just like in Arduino code, wraps the functionalities for serial communication and string manipulation. The ```await Usart(3)``` set up the serial communication for port 3. To check which port your Arduino is connected, check Windows Device Manager.
+It starts by including ```usart.ceu``` and ```string.ceu``` that, just like in Arduino code, wraps the functionalities for serial communication and string manipulation. The ```spawn Usart(3)``` set up the serial communication for port 3. To check which port your Arduino is connected, check Windows Device Manager.
 
 ```
 loop do
