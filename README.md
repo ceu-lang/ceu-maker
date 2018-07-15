@@ -6,7 +6,7 @@ Céu-Maker is a programming environment that integrates `ceu-arduino` and
 ## Installation
 
 - Download the latest release from GitHub:
-    - https://github.com/fsantanna/ceu-maker/releases
+    - https://github.com/ceu-lang/ceu-maker/releases
 - Execute the downloaded file and choose the appropriate destination.
 - After the installation, two windows will appear:
     - The folder `bin/`.
@@ -34,10 +34,10 @@ Céu-Maker is a programming environment that integrates `ceu-arduino` and
 ## Package Generation (for developers only)
 
 Céu-Maker depends on
-    [Céu](https://github.com/fsantanna/ceu),
-    [Céu-Arduino](https://github.com/fsantanna/ceu-arduino),
-    [Céu-SDL](https://github.com/fsantanna/ceu-sdl), and
-    [pico-Céu](https://github.com/fsantanna/pico-ceu).
+    [Céu](https://github.com/ceu-lang/ceu),
+    [Céu-Arduino](https://github.com/ceu-lang/ceu-arduino),
+    [Céu-SDL](https://github.com/ceu-lang/ceu-sdl), and
+    [pico-Céu](https://github.com/ceu-lang/pico-ceu).
 
 To generate a new version of Céu-Maker, use the instructions as follows:
 
@@ -48,10 +48,10 @@ To generate a new version of Céu-Maker, use the instructions as follows:
 First, clone the source repositories:
 
 ```
-$ git clone https://github.com/fsantanna/ceu
-$ git clone https://github.com/fsantanna/ceu-arduino
-$ git clone https://github.com/fsantanna/ceu-sdl
-$ git clone https://github.com/fsantanna/pico-ceu
+$ git clone https://github.com/ceu-lang/ceu
+$ git clone https://github.com/ceu-lang/ceu-arduino
+$ git clone https://github.com/ceu-lang/ceu-sdl
+$ git clone https://github.com/ceu-lang/pico-ceu
 ```
 
 Checkout the target version for each of the source repositories, e.g.:
@@ -85,4 +85,4 @@ Follow the `Installation->Testing` instructions above.
 ### Add release to GitHub
 - Move `releases/ceu-maker.exe` to `releases/ceu-maker-vX.XX-XXX.exe`
 - Add release to GitHub:
-    - https://github.com/fsantanna/ceu-maker/releases/new
+    - https://github.com/ceu-lang/ceu-maker/releases/new
