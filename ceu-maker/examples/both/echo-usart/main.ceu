@@ -37,7 +37,7 @@
 
         await Usart_RX(&buffer, 5);
 
-        _printf("\n> Received the string: ");
+        _printf("\n> Receive the string: ");
         call String_Print(&buffer);  
 
 
@@ -48,7 +48,7 @@
 
         await Usart_TX(&buffer);
 
-        _printf("\n> Sended the string: ");
+        _printf("\n> Send the string: ");
         call String_Print(&buffer);      
     end
     
