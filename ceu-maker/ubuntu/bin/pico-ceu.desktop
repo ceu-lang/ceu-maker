@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Pico-Ceu
+Comment=Run Pico-Ceu application
+Exec=bash -c 'cd $(dirname %k) && $(dirname %k)/../run/make-pico.sh %U && read -n1 -r -p "Press any key to continue..." key;'
+Type=Application
+Terminal=true
+Icon=ceu-star
