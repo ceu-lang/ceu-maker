@@ -3,6 +3,7 @@ releases/
 dist/
 ceu-maker/ubuntu/docs/
 ceu-maker/windows/docs/
+ceu-maker/ubuntu/icos/
 ceu-maker/ubuntu/repos/
 ceu-maker/windows/repos/
 ceu-maker/ubuntu/run/c/
