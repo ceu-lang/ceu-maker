@@ -106,6 +106,6 @@ winrar:
 	WinRAR/WinRAR.exe a -zWinRAR/setup_comment.txt -r -sfx -iiconresources/both/icos/cib_192.ico -iimgicos/iimg.bmp releases/ceu-maker.exe "ceu-maker/*"
 
 compress:
-	tar --transform='s,ceu-maker/ubuntu,ceu-maker-$(BRANCH),' -pcvzf releases/ceu-maker.tar.gz ceu-maker/$(TARGETOS)/
+	tar --transform='s,ceu-maker/ubuntu,ceu-maker-$(BRANCH),' -pcvzf releases/ceu-maker-$(BRANCH).tar.gz ceu-maker/$(TARGETOS)/
 
 .PHONY: clean dirs repos ceu arduino sdl pico winrar 
