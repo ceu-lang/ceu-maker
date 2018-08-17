@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Ceu-Arduino
+Comment=Run Ceu-Arduino application
+Exec=bash -c 'cd $(dirname %k) && $(dirname %k)/../run/make-arduino.sh %U; $SHELL'
+Type=Application
+Terminal=true
+Icon=ceu-arduino
