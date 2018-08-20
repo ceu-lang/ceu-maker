@@ -1,9 +1,13 @@
 cd $PWD/../repos/ceu-arduino/
 
-CEU_SRC=$1
+CEU_SRC_=$1
 
-if [ -f $CEU_SRC/main.ceu ]; then
-	CEU_SRC = $CEU_SRC/main.ceu
+if [ -f $CEU_SRC_/main.ceu ]; then
+	CEU_SRC_ = $CEU_SRC_/main.ceu
 fi
 
-make -f Makefile CEU_SRC_=$CEU_SRC
+ARD_ARCH=avr
+ARD_BOARD=uno
+ARD_PORT=/dev/ttyACM0
+
+make -f Makefile CEU_SRC=$CEU_SRC_ ARD_ARCH_=$ARD_ARCH ARD_BOARD_=$ARD_BOARD ARD_PORT_=$ARD_PORT
