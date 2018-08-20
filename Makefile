@@ -3,11 +3,11 @@
 
 TARGETOS = $(MAKECMDGOALS)
 
-# ifneq ($(TARGETOS),ubuntu)
-# ifneq ($(TARGETOS),windows)
-# $(error use 'make ubuntu' or 'make windows')
-# endif
-# endif
+ifneq ($(TARGETOS),ubuntu)
+ifneq ($(TARGETOS),windows)
+$(error use 'make ubuntu' or 'make windows')
+endif
+endif
 
 ifdef SYSTEMROOT #WINDOWS
 	LUA  = ../../../../../../ceu-maker/windows/run/lua53.exe 
@@ -85,7 +85,7 @@ pico:
 	cp     resources/both/repos/pico-ceu/docs/manual/v0.30/pico-ceu-v0.30.pdf ceu-maker/$(TARGETOS)/docs/
 	cp     resources/both/repos/pico-ceu/Makefile               ceu-maker/$(TARGETOS)/repos/pico-ceu/
 	cp     resources/both/repos/pico-ceu/tiny.ttf               ceu-maker/$(TARGETOS)/repos/pico-ceu/
-	cp     resources/both/repos/pico-ceu/pico.ceu               ceu-maker/$(TARGETOS)/repo/pico-ceu/
+	cp     resources/both/repos/pico-ceu/pico.ceu               ceu-maker/$(TARGETOS)/repos/pico-ceu/
 	cp     resources/both/run/make-pico.conf                    ceu-maker/$(TARGETOS)/repos/pico-ceu/Makefile.dirs
 	cp -Rf resources/both/repos/pico-ceu/include/*              ceu-maker/$(TARGETOS)/repos/pico-ceu/include/
 
