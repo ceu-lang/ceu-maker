@@ -3,15 +3,15 @@
 
 TARGETOS = $(MAKECMDGOALS)
 
-ifneq ($(TARGETOS),ubuntu)
-ifneq ($(TARGETOS),windows)
-$(error use 'make ubuntu' or 'make windows')
-endif
-endif
+# ifneq ($(TARGETOS),ubuntu)
+# ifneq ($(TARGETOS),windows)
+# $(error use 'make ubuntu' or 'make windows')
+# endif
+# endif
 
 ifdef SYSTEMROOT #WINDOWS
-	LUA = ../../../../ceu-maker/run/lua53.exe 
-	MAKE = ../../../ceu-maker/mingw/bin/make.exe
+	LUA  = ../../../../../../ceu-maker/windows/run/lua53.exe 
+	MAKE = ../../../../../ceu-maker/windows/mingw/bin/make.exe
 else
 	ifeq ($(shell uname), Linux) #UBUNTU
 		LUA = lua5.3 
@@ -21,7 +21,7 @@ endif
 
 BRANCH = pre-v0.40
 
-ubuntu: clean dirs repos ceu arduino sdl pico examples icos renamedesktopfiles compress
+ubuntu: clean dirs repos ceu arduino sdl pico examples icos compress
 windows: clean dirs repos ceu arduino sdl pico examples winrar
 
 clean:
@@ -85,7 +85,7 @@ pico:
 	cp     resources/both/repos/pico-ceu/docs/manual/v0.30/pico-ceu-v0.30.pdf ceu-maker/$(TARGETOS)/docs/
 	cp     resources/both/repos/pico-ceu/Makefile               ceu-maker/$(TARGETOS)/repos/pico-ceu/
 	cp     resources/both/repos/pico-ceu/tiny.ttf               ceu-maker/$(TARGETOS)/repos/pico-ceu/
-	cp     resources/both/repos/pico-ceu/pico.ceu               ceu-maker/$(TARGETOS)/repos/pico-ceu/
+	cp     resources/both/repos/pico-ceu/pico.ceu               ceu-maker/$(TARGETOS)/repo/pico-ceu/
 	cp     resources/both/run/make-pico.conf                    ceu-maker/$(TARGETOS)/repos/pico-ceu/Makefile.dirs
 	cp -Rf resources/both/repos/pico-ceu/include/*              ceu-maker/$(TARGETOS)/repos/pico-ceu/include/
 
@@ -99,13 +99,10 @@ icos:
 	cp resources/both/icos/star_256.png ceu-maker/$(TARGETOS)/icos/
 	cp resources/both/icos/ceu-arduino.png ceu-maker/$(TARGETOS)/icos/
 
-renamedesktopfiles:
-
-
 winrar:
-	WinRAR/WinRAR.exe a -zWinRAR/setup_comment.txt -r -sfx -iiconresources/both/icos/cib_192.ico -iimgicos/iimg.bmp releases/ceu-maker.exe "ceu-maker/*"
-
+	resources/windows/WinRAR/WinRAR.exe a -zresources/windows/WinRAR/setup_comment.txt -ep1 -r -sfx -iiconresources/both/icos/cib_192.ico -iimgresources/both/icos/iimg.bmp releases/ceu-maker-windows-$(BRANCH).exe "ceu-maker/windows/*"
+	
 compress:
-	tar --transform='s,ceu-maker/ubuntu,ceu-maker-$(BRANCH),' -pcvzf releases/ceu-maker-$(BRANCH).tar.gz ceu-maker/$(TARGETOS)/
+	tar --transform='s,ceu-maker/ubuntu,ceu-maker-$(BRANCH),' -pcvzf releases/ceu-maker-ubuntu-$(BRANCH).tar.gz ceu-maker/$(TARGETOS)/
 
 .PHONY: clean dirs repos ceu arduino sdl pico winrar 

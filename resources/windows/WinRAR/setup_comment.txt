@@ -1,4 +1,4 @@
-Setup=ceu-maker/start.bat
+Setup=./start.bat
 Title=Céu-Maker Setup
 Text
 {

@@ -14,6 +14,6 @@ mkdir %CEU_DIR%\dist\res\ 2>NUL
 copy ..\..\run\dist\*.* %CEU_DIR%\dist\ >NUL
 copy %CEU_DIR%\res\*.* %CEU_DIR%\dist\res\ >NUL
 
- ..\..\mingw\bin\make -f Makefile CEU_SRC_="%CEU_SRC%" CEU_SRC_DIR="%CEU_DIR%
+ ..\..\mingw\bin\make -f Makefile CEU_SRC_="%CEU_SRC%" CEU_SRC_DIR=%CEU_DIR%
 
-pause
+ pause

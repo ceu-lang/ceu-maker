@@ -1,16 +1,25 @@
 # Céu-Maker
 
-Céu-Maker is a programming environment that integrates `ceu-arduino` and
-`pico-ceu` in a single package for Windows.
+Céu-Maker is a programming environment that integrates `Céu-Arduino` and `Pico-Céu` in a single package for Windows and Ubuntu.
 
 ## Installation
 
 - Download the latest release from GitHub:
     - https://github.com/ceu-lang/ceu-maker/releases
-- Execute the downloaded file and choose the appropriate destination.
-- After the installation, two windows will appear:
-    - The folder `bin/`.
-    - The folder `examples/`.
+- If you are on Windows:
+    - Execute the downloaded file and choose the appropriate destination
+    - After the installation, two windows will appear:
+        - The folder `bin/`.
+        - The folder `examples/`.
+- If you are on Ubuntu:
+    - Extract the `tar.gz` downloaded file in a any destination
+    - Run `make ubuntu`
+    ```
+    $ git clone https://github.com/ceu-lang/ceu-maker/
+    $ cd ceu-maker/
+    $ make ubuntu
+    ```
+
 
 ### Testing
 
@@ -20,9 +29,9 @@ Céu-Maker is a programming environment that integrates `ceu-arduino` and
     - Observe the application behavior.
 - Céu-Arduino
     - Plug the Arduino board you want to test.
-    - Execute `ceu-maker/arduino-1.8.3/arduino.exe` and configure `Tools->Board` and `Tools->Port`.
     - Open the folder `examples/ceu-arduino/`.
     - Drag & Drop the file `blink-01.ceu` into the icon `Céu-Arduino` (`bin/` folder).
+    - Choose in which board and port the application should be deployed
     - Observe the application behavior.
 - Both
     - Open the folder `examples/both/`.
@@ -31,7 +40,7 @@ Céu-Maker is a programming environment that integrates `ceu-arduino` and
 
 -------------------------------------------------------------------------------
 
-## Package Generation (for developers only, windows only)
+## Package Generation (for developers only)
 
 Céu-Maker depends on
     [Céu](https://github.com/ceu-lang/ceu),
@@ -39,19 +48,31 @@ Céu-Maker depends on
     [Céu-SDL](https://github.com/ceu-lang/ceu-sdl), and
     [pico-Céu](https://github.com/ceu-lang/pico-ceu).
 
+### Céu-Maker Windows version (windows only)
 Open *Git Bash*, clone this repository, and run `make`:
 
 ```
 $ git clone https://github.com/ceu-lang/ceu-maker/
 $ cd ceu-maker/
-$ ceu-maker/mingw/bin/make.exe
+$ ceu-maker/windows/mingw/bin/make.exe windows
 ```
 
 This will download all dependencies and generate a self-extracting package
 `releases/ceu-maker.exe` with the Céu-Maker.
 
-To release a new version, rename the file and add it to *GitHub*:
+### Céu-Maker Ubuntu version (windows only)
+Open a terminal, clone this repository, and run `make`:
 
-- Rename `releases/ceu-maker.exe` to `releases/ceu-maker-vX.XX-XXX.exe`
-- Add release to GitHub:
-    - https://github.com/ceu-lang/ceu-maker/releases/new
+```
+$ git clone https://github.com/ceu-lang/ceu-maker/
+$ cd ceu-maker/
+$ make ubuntu
+```
+
+This will download all dependencies and generate a .tar.gz package
+`releases/ceu-maker.tar.gz` with the Céu-Maker.
+
+### Release a new version
+
+To release a new version, add the release to *GitHub*:
+- https://github.com/ceu-lang/ceu-maker/releases/new
