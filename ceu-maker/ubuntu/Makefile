@@ -1,4 +1,6 @@
-all: ceu-dependencies sdl icos desktopx
+USERNAME = $(shell whoami)
+
+all: ceu-dependencies sdl icos desktopx dialout
 
 ceu-dependencies:
 	sudo apt-get install git lua5.3 lua-lpeg liblua5.3-0 liblua5.3-dev
@@ -12,6 +14,11 @@ icos:
 
 desktopx:
 	chmod +x bin/pico-ceu.desktop
-	chmod +x bin/ceu-arduino.desktop 
+	chmod +x bin/ceu-arduino.desktop
 
-.PHONY: ceu-dependencies sdl icons desktopx
+dialout:
+	# Solve the error avrdude: ser_open(): can't open device "/dev/ttyACM0": Permission denied
+	sudo usermod -a -G dialout $(USERNAME)
+	sudo chmod a+rw /dev/ttyACM0
+
+.PHONY: ceu-dependencies sdl icons desktopx dialout
