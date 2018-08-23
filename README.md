@@ -13,13 +13,7 @@ Céu-Maker is a programming environment that integrates `Céu-Arduino` and `Pico
         - The folder `examples/`.
 - If you are on Ubuntu:
     - Extract the `tar.gz` downloaded file in a any destination
-    - Run `make ubuntu`
-    ```
-    $ git clone https://github.com/ceu-lang/ceu-maker/
-    $ cd ceu-maker/
-    $ make ubuntu
-    ```
-
+    - Run `sudo make`
 
 ### Testing
 
