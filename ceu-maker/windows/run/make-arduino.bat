@@ -12,7 +12,7 @@ for /f "tokens=1-3" %%a in ('%~dp0SelectDevice.exe') do (
             ..\..\mingw\bin\make -f Makefile CEU_SRC=%1 IDE=t
         ) else (
             rem the user choosed a board from the list
-            ..\..\mingw\bin\make -f Makefile CEU_SRC=%1 ARD_BOARD=%%a ARD_PORT=%%b ARD_CPU=%%c
+            ..\..\mingw\bin\make -f Makefile CEU_SRC=%1 ARD_BOARD=%%a ARD_PORT=%%b ARD_CPU=%%c ARD_MCU=%%d
         )
 
         pause

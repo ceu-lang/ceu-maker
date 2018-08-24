@@ -126,6 +126,9 @@ diecimila.menu.cpu.atmega168.build.mcu=atmega168
 
 nano.name=Arduino Nano
 
+nano.vid.0=0x1A86
+nano.pid.0=0x7523
+
 nano.upload.tool=avrdude
 nano.upload.protocol=arduino
 
