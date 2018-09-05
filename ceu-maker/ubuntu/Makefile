@@ -14,6 +14,7 @@ permissions:
 	chmod +x bin/ceu-arduino.desktop
 
 lua:
+	cd run/lua/ && make clean
 	cd run/lua/ && make linux test
 
 dialout:
