@@ -12,6 +12,10 @@ ceu-maker/ubuntu/run/ceu.lua
 ceu-maker/windows/run/ceu.lua
 ceu-maker/ubuntu/examples/
 ceu-maker/windows/examples/
+ceu-maker/ubuntu/lua/run/lua/src/*.a
+ceu-maker/ubuntu/lua/run/lua/src/*.o
+ceu-maker/ubuntu/lua/run/lua/src/lua
+ceu-maker/ubuntu/lua/run/lua/src/luac
 
 *~
 *.swp
