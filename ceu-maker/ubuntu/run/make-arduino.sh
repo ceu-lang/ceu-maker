@@ -9,5 +9,11 @@ fi
 ARD_ARCH=avr
 ARD_BOARD=uno
 ARD_PORT=/dev/ttyACM0
+ENV_=$HOME/ceu-maker/env
 
-make -f Makefile CEU_SRC=$CEU_SRC_ ARD_ARCH_=$ARD_ARCH ARD_BOARD_=$ARD_BOARD ARD_PORT_=$ARD_PORT
+mkdir -p ~/ceu-maker/
+mkdir -p ~/ceu-maker/env/
+
+cp env/*.* ~/ceu-maker/env/
+
+make -f Makefile CEU_SRC=$CEU_SRC_ ARD_ARCH_=$ARD_ARCH ARD_BOARD_=$ARD_BOARD ARD_PORT_=$ARD_PORT ENV=$ENV_
