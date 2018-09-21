@@ -17,7 +17,15 @@ lua:
 	cd run/lua/ && make clean
 	cd run/lua/ && make linux test
 
-dialout:
+dialout: dialoutgroup msg
+
+dialoutgroup:
 	sudo usermod -a -G dialout $(USERNAME)
+
+msg:
+	$(info ) 
+	$(info ---------------) 
+	$(info You will need to log out and log in again to be able to load source code to an Arduino board) 
+	$(info ---------------) 
 
 .PHONY: sdl icos permissions lua dialout
