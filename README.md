@@ -11,6 +11,7 @@ Céu-Maker is a programming environment that integrates `Céu-Arduino` and `Pico
     - After the installation, two windows will appear:
         - The folder `bin/`.
         - The folder `examples/`.
+    - Céu-Arduino needs the .Net Framework 4. You can download it from [here](https://www.microsoft.com/pt-br/download/details.aspx?id=17851). To check if the download and installation are necessary, simply try to run a Céu-Arduino application and check if it produces a ```.Net Framework initialization error```.
 - If you are on Ubuntu:
     - Extract the `tar.gz` downloaded file in a any destination
     - Run `sudo make`
