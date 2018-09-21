@@ -18,8 +18,6 @@ lua:
 	cd run/lua/ && make linux test
 
 dialout:
-	# Solve the error avrdude: ser_open(): can't open device "/dev/ttyACM0": Permission denied
 	sudo usermod -a -G dialout $(USERNAME)
-	sudo chmod a+rw /dev/ttyACM0
 
 .PHONY: sdl icos permissions lua dialout
