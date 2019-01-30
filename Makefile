@@ -19,7 +19,7 @@ else
 	endif
 endif
 
-BRANCH = pre-v0.40
+BRANCH = master
 
 ubuntu: clean dirs repos ceu arduino sdl pico examples icos compress
 windows: clean dirs repos ceu arduino sdl pico examples winrar
@@ -86,7 +86,7 @@ pico:
 	cp     resources/both/repos/pico-ceu/Makefile               ceu-maker/$(TARGETOS)/repos/pico-ceu/
 	cp     resources/both/repos/pico-ceu/tiny.ttf               ceu-maker/$(TARGETOS)/repos/pico-ceu/
 	cp     resources/both/repos/pico-ceu/pico.ceu               ceu-maker/$(TARGETOS)/repos/pico-ceu/
-	cp     resources/both/run/make-pico.conf                    ceu-maker/$(TARGETOS)/repos/pico-ceu/Makefile.dirs
+	cp     resources/both/run/make-pico.conf                    ceu-maker/$(TARGETOS)/repos/pico-ceu/Makefile.conf
 	cp -Rf resources/both/repos/pico-ceu/include/*              ceu-maker/$(TARGETOS)/repos/pico-ceu/include/
 
 examples:
