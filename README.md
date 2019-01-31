@@ -37,25 +37,19 @@ Céu-Maker is a programming environment that integrates `Céu-Arduino` and `Pico
 
 ## Package Generation (for developers only)
 
-Céu-Maker depends on
-    [Céu](https://github.com/ceu-lang/ceu),
-    [Céu-Arduino](https://github.com/ceu-lang/ceu-arduino),
-    [Céu-SDL](https://github.com/ceu-lang/ceu-sdl), and
-    [pico-Céu](https://github.com/ceu-lang/pico-ceu).
-
 ### Céu-Maker Windows version (windows only)
 Open *Git Bash*, clone this repository, and run `make`:
 
 ```
 $ git clone https://github.com/ceu-lang/ceu-maker/
 $ cd ceu-maker/
-$ ceu-maker/windows/mingw/bin/make.exe windows
+$ ceu-maker/ceu-maker-windows/mingw/bin/make.exe windows
 ```
 
 This will download all dependencies and generate a self-extracting package
 `releases/ceu-maker.exe` with the Céu-Maker.
 
-### Céu-Maker Ubuntu version (windows only)
+### Céu-Maker Ubuntu version (ubuntu only)
 Open a terminal, clone this repository, and run `make`:
 
 ```

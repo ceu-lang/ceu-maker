@@ -1,10 +1,14 @@
-Setup=./start.bat
-Title=C徼-Maker Setup
+Setup=./ceu-maker-windows/start.bat
+Title=C嚙線-Maker Setup
 Text
 {
-    <p>Setup will install C徼-Maker in the following folder. To install in a different folder, click Browse and select another folder. Click install to finish.</p>
+    <p>Setup will install C嚙線-Maker in a folder inside the path chosen.</p>
 
-    <p>C徼-Maker is a programming environment that integrates ceu-arduino and pico-ceu in a single package for Windows.</p>
+    <p>To select installation path, click at Browse button.</p>
+
+    <p>Click install to finish.</p>
+
+    <p>C嚙線-Maker is a programming environment that integrates C嚙線-Arduino and pico-C嚙線 in a single package for Windows.</p>
  
     <p>After installation, drag and drop an example of the folder examples into the corresponding icon (inside the / bin folder).</p>
 }

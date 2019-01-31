@@ -10,8 +10,8 @@ endif
 endif
 
 ifdef SYSTEMROOT #WINDOWS
-	LUA  = ../../../../../../ceu-maker/windows/run/lua53.exe 
-	MAKE = ../../../../../ceu-maker/windows/mingw/bin/make.exe
+	LUA  = ../../../../../../ceu-maker/ceu-maker-windows/run/lua53.exe 
+	MAKE = ../../../../../ceu-maker/ceu-maker-windows/mingw/bin/make.exe
 else
 	ifeq ($(shell uname), Linux) #UBUNTU
 		LUA = lua5.3 
@@ -35,19 +35,19 @@ clean:
 dirs:
 	mkdir -p resources/both/repos/
 	mkdir -p releases/
-	mkdir -p ceu-maker/$(TARGETOS)/docs/
-	mkdir -p ceu-maker/$(TARGETOS)/run/c
-	mkdir -p ceu-maker/$(TARGETOS)/repos/ceu-arduino/
-	mkdir -p ceu-maker/$(TARGETOS)/repos/ceu-arduino/env/
-	mkdir -p ceu-maker/$(TARGETOS)/repos/ceu-arduino/include/
-	mkdir -p ceu-maker/$(TARGETOS)/repos/ceu-arduino/libraries/
-	mkdir -p ceu-maker/$(TARGETOS)/repos/pico-ceu/
-	mkdir -p ceu-maker/$(TARGETOS)/repos/pico-ceu/env/
-	mkdir -p ceu-maker/$(TARGETOS)/repos/pico-ceu/include/
-	mkdir -p ceu-maker/$(TARGETOS)/examples/
-	mkdir -p ceu-maker/$(TARGETOS)/examples/both/
-	mkdir -p ceu-maker/$(TARGETOS)/examples/ceu-arduino/
-	mkdir -p ceu-maker/$(TARGETOS)/examples/pico-ceu/
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/run/c
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/docs/
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/env/
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/include/
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/libraries/
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/env/
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/include/
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/examples/
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/examples/both/
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/examples/ceu-arduino/
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/examples/pico-ceu/
 
 repos:
 	-git clone https://github.com/ceu-lang/ceu         resources/both/repos/ceu
@@ -61,48 +61,48 @@ repos:
 	cd resources/both/repos/ceu-arduino/libraries/ && $(MAKE) clone
 
 ceu:
-	cp -Rf resources/both/run/c/*                               ceu-maker/$(TARGETOS)/run/c
-	cp -Rf resources/both/repos/ceu/env/*                       ceu-maker/$(TARGETOS)/repos/pico-ceu/env/
-	cp -Rf resources/both/repos/ceu/include/*                   ceu-maker/$(TARGETOS)/repos/ceu-arduino/include/
-	cp -Rf resources/both/repos/ceu/include/*                   ceu-maker/$(TARGETOS)/repos/pico-ceu/include/
-	cp resources/both/repos/ceu/docs/manual/v0.30/ceu-v0.30.pdf ceu-maker/$(TARGETOS)/docs/
+	cp -Rf resources/both/run/c/*                               ceu-maker/ceu-maker-$(TARGETOS)/run/c
+	cp -Rf resources/both/repos/ceu/env/*                       ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/env/
+	cp -Rf resources/both/repos/ceu/include/*                   ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/include/
+	cp -Rf resources/both/repos/ceu/include/*                   ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/include/
+	cp resources/both/repos/ceu/docs/manual/v0.30/ceu-v0.30.pdf ceu-maker/ceu-maker-$(TARGETOS)/docs/
 	cd resources/both/repos/ceu/src/lua && $(LUA) pak.lua lua5.3
-	cp resources/both/repos/ceu/src/lua/ceu                     ceu-maker/$(TARGETOS)/run/ceu.lua
+	cp resources/both/repos/ceu/src/lua/ceu                     ceu-maker/ceu-maker-$(TARGETOS)/run/ceu.lua
 
 arduino:
-	cp resources/both/repos/ceu-arduino/docs/manual/v0.20/ceu-arduino-v0.20.pdf ceu-maker/$(TARGETOS)/docs/
+	cp resources/both/repos/ceu-arduino/docs/manual/v0.20/ceu-arduino-v0.20.pdf ceu-maker/ceu-maker-$(TARGETOS)/docs/
 	#cp repos/ceu-arduino/docs/manual/v0.30/ceu-arduino-v0.30.pdf ceu-maker/docs/
-	cp     resources/both/repos/ceu-arduino/Makefile            ceu-maker/$(TARGETOS)/repos/ceu-arduino/
-	cp     resources/both/run/make-arduino.conf                 ceu-maker/$(TARGETOS)/repos/ceu-arduino/Makefile.conf
-	cp -Rf resources/both/repos/ceu-arduino/env/*               ceu-maker/$(TARGETOS)/repos/ceu-arduino/env/
-	cp -Rf resources/both/repos/ceu-arduino/include/*           ceu-maker/$(TARGETOS)/repos/ceu-arduino/include/
-	cp -Rf resources/both/repos/ceu-arduino/libraries/*         ceu-maker/$(TARGETOS)/repos/ceu-arduino/libraries/
+	cp     resources/both/repos/ceu-arduino/Makefile            ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/
+	cp     resources/both/run/make-arduino.conf                 ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/Makefile.conf
+	cp -Rf resources/both/repos/ceu-arduino/env/*               ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/env/
+	cp -Rf resources/both/repos/ceu-arduino/include/*           ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/include/
+	cp -Rf resources/both/repos/ceu-arduino/libraries/*         ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/libraries/
 
 sdl:
-	cp -Rf resources/both/repos/ceu-sdl/include/*               ceu-maker/$(TARGETOS)/repos/pico-ceu/include/
+	cp -Rf resources/both/repos/ceu-sdl/include/*               ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/include/
 
 pico:
-	cp     resources/both/repos/pico-ceu/docs/manual/v0.30/pico-ceu-v0.30.pdf ceu-maker/$(TARGETOS)/docs/
-	cp     resources/both/repos/pico-ceu/Makefile               ceu-maker/$(TARGETOS)/repos/pico-ceu/
-	cp     resources/both/repos/pico-ceu/tiny.ttf               ceu-maker/$(TARGETOS)/repos/pico-ceu/
-	cp     resources/both/repos/pico-ceu/pico.ceu               ceu-maker/$(TARGETOS)/repos/pico-ceu/
-	cp     resources/both/run/make-pico.conf                    ceu-maker/$(TARGETOS)/repos/pico-ceu/Makefile.conf
-	cp -Rf resources/both/repos/pico-ceu/include/*              ceu-maker/$(TARGETOS)/repos/pico-ceu/include/
+	cp     resources/both/repos/pico-ceu/docs/manual/v0.40/pico-ceu-v0.40.pdf ceu-maker/ceu-maker-$(TARGETOS)/docs/
+	cp     resources/both/repos/pico-ceu/Makefile               ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/
+	cp     resources/both/repos/pico-ceu/tiny.ttf               ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/
+	cp     resources/both/repos/pico-ceu/pico.ceu               ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/
+	cp     resources/both/run/make-pico.conf                    ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/Makefile.conf
+	cp -Rf resources/both/repos/pico-ceu/include/*              ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/include/
 
 examples:
-	cp -Rf resources/both/repos/ceu-arduino/examples/* ceu-maker/$(TARGETOS)/examples/ceu-arduino/
-	cp -Rf resources/both/repos/pico-ceu/examples/*    ceu-maker/$(TARGETOS)/examples/pico-ceu/
-	cp -Rf resources/both/examples/*                   ceu-maker/$(TARGETOS)/examples/both/
+	cp -Rf resources/both/repos/ceu-arduino/examples/* ceu-maker/ceu-maker-$(TARGETOS)/examples/ceu-arduino/
+	cp -Rf resources/both/repos/pico-ceu/examples/*    ceu-maker/ceu-maker-$(TARGETOS)/examples/pico-ceu/
+	cp -Rf resources/both/examples/*                   ceu-maker/ceu-maker-$(TARGETOS)/examples/both/
 
 icos:
-	mkdir -p ceu-maker/$(TARGETOS)/icos/
-	cp resources/both/icos/star_256.png ceu-maker/$(TARGETOS)/icos/
-	cp resources/both/icos/ceu-arduino.png ceu-maker/$(TARGETOS)/icos/
+	mkdir -p ceu-maker/ceu-maker-$(TARGETOS)/icos/
+	cp resources/both/icos/star_256.png ceu-maker/ceu-maker-$(TARGETOS)/icos/
+	cp resources/both/icos/ceu-arduino.png ceu-maker/ceu-maker-$(TARGETOS)/icos/
 
 winrar:
-	resources/windows/WinRAR/WinRAR.exe a -zresources/windows/WinRAR/setup_comment.txt -ep1 -r -sfx -iiconresources/both/icos/cib_192.ico -iimgresources/both/icos/iimg.bmp releases/ceu-maker-windows-$(BRANCH).exe "ceu-maker/windows/*"
+	resources/windows/WinRAR/WinRAR.exe a -dceu -zresources/windows/WinRAR/setup_comment.txt -ep1 -r -sfx -iiconresources/both/icos/cib_192.ico -iimgresources/both/icos/iimg.bmp releases/ceu-maker-windows.exe "./ceu-maker/ceu-maker-windows"
 	
 compress:
-	tar --transform='s,ceu-maker/ubuntu,ceu-maker-$(BRANCH),' -pcvzf releases/ceu-maker-ubuntu-$(BRANCH).tar.gz ceu-maker/$(TARGETOS)/
+	tar --transform='s,ceu-maker/ceu-maker-ubuntu,ceu-maker,' -pcvzf releases/ceu-maker-ubuntu.tar.gz ceu-maker/ceu-maker-$(TARGETOS)/
 
 .PHONY: clean dirs repos ceu arduino sdl pico winrar 
