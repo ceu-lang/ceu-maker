@@ -1,17 +1,20 @@
 cd $PWD/../repos/pico-ceu/
 
-CEU_SRC=$1
+CEU_SRC_=$1
 
-if [ -f $CEU_SRC/main.ceu ]; then
-	CEU_SRC = $CEU_SRC/main.ceu
+if [ -f $CEU_SRC_/main.ceu ]; then
+    CEU_SRC_ = $CEU_SRC_/main.ceu
 fi
 
-CEU_DIR=~/ceu-maker
+CEU_DIR=`dirname $CEU_SRC_`
 
-mkdir -p $CEU_DIR/dist/
-mkdir -p $CEU_DIR/dist/res/
-
+mkdir -p $CEU_DIR/dist
+mkdir -p $CEU_DIR/dist/res
 cp ../../run/dist/*.* $CEU_DIR/dist/
-cp `dirname $CEU_SRC`/res/*.* $CEU_DIR/dist/res/
+cp $CEU_DIR/res/*.* $CEU_DIR/dist/res/
 
-make -f Makefile CEU_SRC_=$CEU_SRC CEU_SRC_DIR=$CEU_DIR
+echo $CEU_SRC_
+echo $CEU_DIR
+
+echo $PWD
+make -f Makefile CEU_SRC=$CEU_SRC_ CEU_SRC_DIR=$CEU_DIR
