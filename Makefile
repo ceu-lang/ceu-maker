@@ -115,4 +115,4 @@ winrar:
 compress:
 	tar --transform='s,ceu-maker/ceu-maker-ubuntu,ceu-maker,' -pcvzf releases/ceu-maker-ubuntu.tar.gz ceu-maker/ceu-maker-$(TARGETOS)/
 
-.PHONY: clean dirs repos ceu arduino sdl pico winrar 
+.PHONY: ubuntu windows clean dirs repos ceu arduino sdl pico examples icos winrar compress
