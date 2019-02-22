@@ -1,11 +1,19 @@
-# defining LUA and make executables depending on the operation system
-# https://stackoverflow.com/questions/4058840/makefile-that-distincts-beetween-windows-and-unix-like-systems
-
+ifneq ($(MAKECMDGOALS),clean)
 TARGETOS = $(MAKECMDGOALS)
+endif
 
 ifneq ($(TARGETOS),ubuntu)
 ifneq ($(TARGETOS),windows)
-$(error use 'make ubuntu' or 'make windows')
+$(info )
+$(info make windows                             Make and create an .exe for windows)
+$(info make ubuntu                              Make and create a .tar.gz for ubuntu)
+$(info )
+$(info make clean TARGETOS=windows              Clean files and folders created in ceu-maker-windows directory)
+$(info make clean TARGETOS=ubuntu               Clean files and folders created in ceu-maker-ubuntu directory)
+$(info )
+$(info make <windows/ubuntu> BRANCH=<branch>    Chose the branch to be used to make and create releases)
+$(info )
+$(error Use one of the above targets)
 endif
 endif
 
@@ -19,19 +27,21 @@ else
 	endif
 endif
 
+ifndef (BRANCH)
 BRANCH = master
+endif
 
-ubuntu: clean dirs repos ceu arduino sdl pico examples icos compress
-windows: clean dirs repos ceu arduino sdl pico examples winrar
+ubuntu: dirs repos ceu arduino sdl pico examples icos compress
+windows: dirs repos ceu arduino sdl pico examples winrar
 
 clean:
-	rm -Rf ceu-maker/docs/
-	rm -Rf ceu-maker/repos/
-	rm -Rf ceu-maker/examples/ceu-arduino/
-	rm -Rf ceu-maker/examples/pico-ceu/
-	rm -Rf ceu-maker/dist/
-	rm -f ceu-maker/run/ceu.lua
-
+	rm -Rf ceu-maker/ceu-maker-$(TARGETOS)/run/c
+	rm -Rf ceu-maker/ceu-maker-$(TARGETOS)/docs/
+	rm -Rf ceu-maker/ceu-maker-$(TARGETOS)/repos/
+	rm -Rf ceu-maker/ceu-maker-$(TARGETOS)/examples/
+	rm -Rf ceu-maker/ceu-maker-$(TARGETOS)/icos/
+	rm -f ceu-maker/ceu-maker-$(TARGETOS)/run/ceu.lua
+	
 dirs:
 	mkdir -p resources/both/repos/
 	mkdir -p releases/
@@ -73,7 +83,7 @@ arduino:
 	cp resources/both/repos/ceu-arduino/docs/manual/v0.20/ceu-arduino-v0.20.pdf ceu-maker/ceu-maker-$(TARGETOS)/docs/
 	#cp repos/ceu-arduino/docs/manual/v0.30/ceu-arduino-v0.30.pdf ceu-maker/docs/
 	cp     resources/both/repos/ceu-arduino/Makefile            ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/
-	cp     resources/both/run/make-arduino.conf                 ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/Makefile.conf
+	cp     resources/both/make-arduino.conf                     ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/Makefile.conf
 	cp -Rf resources/both/repos/ceu-arduino/env/*               ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/env/
 	cp -Rf resources/both/repos/ceu-arduino/include/*           ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/include/
 	cp -Rf resources/both/repos/ceu-arduino/libraries/*         ceu-maker/ceu-maker-$(TARGETOS)/repos/ceu-arduino/libraries/
@@ -86,7 +96,7 @@ pico:
 	cp     resources/both/repos/pico-ceu/Makefile               ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/
 	cp     resources/both/repos/pico-ceu/tiny.ttf               ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/
 	cp     resources/both/repos/pico-ceu/pico.ceu               ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/
-	cp     resources/both/run/make-pico.conf                    ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/Makefile.conf
+	cp     resources/both/make-pico.conf                        ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/Makefile.conf
 	cp -Rf resources/both/repos/pico-ceu/include/*              ceu-maker/ceu-maker-$(TARGETOS)/repos/pico-ceu/include/
 
 examples:

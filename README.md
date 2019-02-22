@@ -65,3 +65,16 @@ This will download all dependencies and generate a .tar.gz package
 
 To release a new version, add the release to *GitHub*:
 - https://github.com/ceu-lang/ceu-maker/releases/new
+
+### More options
+- Choose the branch used to create the releases (the default is master)
+
+    ```
+    make <windows/ubuntu> BRANCH=<branch>
+    ```
+
+- Clean files and folders created in `ceu-maker-windows` or `ceu-maker-ubuntu` directory
+    ```
+    make clean TARGETOS=<windows/ubuntu> 
+    ```
+    The folders `releases` and `ceu-maker\resources\both\repos` are also created by `make <windows/ubuntu>` but can only be deleted manually.
