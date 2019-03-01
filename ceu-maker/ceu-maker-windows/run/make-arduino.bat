@@ -1,20 +1,30 @@
 rem @echo off
-cd %~dp0\..\repos\ceu-arduino\
 
-rem https://stackoverflow.com/questions/11153532/how-to-iterate-string-in-cmd-for-loop
-for /f "tokens=1-3" %%a in ('%~dp0SelectDevice.exe') do (
+rem https://stackoverflow.com/questions/206114/batch-files-how-to-read-a-file
+for /f "tokens=1-4" %%a in (board.conf) do (
+    rem try to use the conf file
+    set e=%%a
+    set f=%%b
+    set g=%%c
+    set h=%%d
+)
 
-    if NOT "%%a" == "" ( 
-        rem the user didn't close the SelectDevice.exe using the 'X' from the window
-
-        if "%%a" == "ide" (
-            rem the user choosed to use the IDE configurations
-            ..\..\mingw\bin\make -f Makefile CEU_SRC=%1 IDE=t
-        ) else (
-            rem the user choosed a board from the list
-            ..\..\mingw\bin\make -f Makefile CEU_SRC=%1 ARD_BOARD=%%a ARD_PORT=%%b ARD_CPU=%%c ARD_MCU=%%d
-        )
-
-        pause
+rem if the conf file is empty
+if "%e%" == "" ( 
+    rem https://stackoverflow.com/questions/11153532/how-to-iterate-string-in-cmd-for-loop
+    for /f "tokens=1-4" %%a in ('%~dp0SelectDevice.exe') do (
+        rem the user choosed a board from the list
+        set e=%%a
+        set f=%%b
+        set g=%%c
+        set h=%%d
     )
 )
+
+if "%e%" == "" ( 
+    echo No board selected. Select a board using SelectDevice or edit the board.conf file.
+) else (
+    cd %~dp0\..\repos\ceu-arduino\
+    ..\..\mingw\bin\make -f Makefile CEU_SRC=%1 ARD_BOARD=%e% ARD_PORT=%f% ARD_CPU=%g% ARD_MCU=%h%
+)
+pause

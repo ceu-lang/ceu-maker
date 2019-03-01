@@ -16,6 +16,6 @@ ceu-maker/ceu-maker-ubuntu/run/lua/src/*.a
 ceu-maker/ceu-maker-ubuntu/run/lua/src/*.o
 ceu-maker/ceu-maker-ubuntu/run/lua/src/lua
 ceu-maker/ceu-maker-ubuntu/run/lua/src/luac
-
+board.conf
 *~
 *.swp
