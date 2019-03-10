@@ -1,6 +1,11 @@
 resources/both/repos/
 releases/
 dist/
+ceu-maker/ceu-maker-windows/notepad++/config.xml
+ceu-maker/ceu-maker-windows/notepad++/langs.xml
+ceu-maker/ceu-maker-windows/notepad++/session.xml
+ceu-maker/ceu-maker-windows/notepad++/stylers.xml
+ceu-maker/ceu-maker-windows/notepad++/plugins/Config/converter.ini
 ceu-maker/ceu-maker-ubuntu/docs/
 ceu-maker/ceu-maker-windows/docs/
 ceu-maker/ceu-maker-ubuntu/icos/
