@@ -11,7 +11,7 @@ rem if we're trying to compile a folder
 if "%fileextension%"=="" (
     set boardPath=%arg%\board.conf
 ) else (
-    set boardPath=board.conf
+    set boardPath=%~dp1board.conf
 )
 
 rem https://stackoverflow.com/questions/206114/batch-files-how-to-read-a-file
