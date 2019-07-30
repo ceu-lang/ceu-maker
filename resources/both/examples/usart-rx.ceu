@@ -1,0 +1,35 @@
+#ifdef CEUMAKER_ARDUINO
+
+    #include "wclock.ceu"
+    #include "usart.ceu"
+    #include "string.ceu"
+    #include "int0.ceu"
+
+    spawn USART_Init(9600);
+
+    loop do
+        var[20] byte str;
+        call String_Append_STR(&str, "send");
+
+        await INT0;
+        var high/low v = call INT0_Get();
+        if (v==high) then
+            await USART_Tx(&str);
+        end
+    end
+
+#elif defined CEUMAKER_PICO
+    #include "usart.ceu"
+    #include "string.ceu"
+
+    spawn USART_Init("/dev/ttyACM0", 9600);
+
+    var integer i;
+    loop i in [-25 -> 25] do
+        var[20] byte buffer;
+        //try use 4 as the second parameter
+        await USART_Rx(&buffer, _);
+
+        emit GRAPHICS_DRAW_PIXEL(i,i);
+    end
+#endif
