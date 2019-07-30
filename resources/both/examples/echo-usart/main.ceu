@@ -3,23 +3,21 @@
     #include "wclock.ceu"
     #include "usart.ceu"
     #include "string.ceu"
-    #include "gpio.ceu"
+    #include "int0.ceu"
 
-    #define IN  2 
+    spawn USART_Init(9600);
 
-    spawn Usart(9600);
-    
-    var int i;
-
-    loop i do
-
+    loop do
         var[5] byte str;
         call String_Append_STR(&str, "send");
 
-        var high/low v = await Pin(IN);
+        await INT0;
+        var high/low v = call INT0_Get();
         if (v==high) then
-            await Usart_TX(&str);
-            await Usart_RX(&str,_);
+            await USART_Tx(&str);
+
+            var[5] byte strRx;
+            await USART_Rx(&strRx,_);
         end
     end
 
@@ -30,26 +28,28 @@
     
     emit WINDOW_SET_TITLE("Echo app");  // sets the window title
 
-    spawn Usart(3);
+    spawn USART_Init("/dev/ttyACM0", 9600);
 
     loop do
         var[5] byte buffer;
 
-        await Usart_RX(&buffer, 5);
+        await USART_Rx(&buffer, 5);
 
         _printf("\n> Receive the string: ");
         call String_Print(&buffer);  
+        {fflush(stdout);}
 
 
         await 1s;
         
+        var[5] byte strRx;
+        call String_Append_STR(&strRx, "echo");
 
-        call String_Append_STR(&buffer, "echo");
-
-        await Usart_TX(&buffer);
+        await USART_Tx(&strRx);
 
         _printf("\n> Send the string: ");
-        call String_Print(&buffer);      
+        call String_Print(&strRx);
+        {fflush(stdout);}
     end
     
 #endif
